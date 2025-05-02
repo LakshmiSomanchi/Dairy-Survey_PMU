@@ -94,7 +94,7 @@ with st.form("survey_form"):
     st.header(labels['Farmer Profile'])
     hpc_name = st.text_input(labels['HPC/MCC Name'])
     hpc_code = st.text_input(labels['HPC/MCC Code'])
-    types = st.selectbox(labels['Types'], (labels['HPCC'], labels['MCC']))
+    types = st.selectbox(labels['Types'], (labels['HPC'], labels['MCC']))
     farmer_name = st.text_input(labels['Farmer Name'])
     farmer_code = st.text_input(labels['Farmer Code'])
     gender = st.selectbox(labels['Gender'], (labels['Male'], labels['Female']))
