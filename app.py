@@ -175,25 +175,6 @@ if submit:
     filename = f"survey_{now.strftime('%Y%m%d_%H%M%S')}.csv"
     df.to_csv(os.path.join(SAVE_DIR, filename), index=False, encoding='utf-8')
     st.success("✅ Survey Submitted and Saved!")
-# === Download Section for Everyone ===
-if st.checkbox("📄 View Past Submissions (Everyone)"):
-    files = os.listdir(SAVE_DIR)
-    if files:
-        all_data = pd.concat([
-            pd.read_csv(os.path.join(SAVE_DIR, f))
-            for f in files if f.endswith('.csv')
-        ], ignore_index=True)
-        st.dataframe(all_data)
-
-        csv = all_data.to_csv(index=False).encode('utf-8')
-        st.download_button(
-            label="⬇️ Download All Responses",
-            data=csv,
-            file_name='all_survey_responses.csv',
-            mime='text/csv'
-        )
-    else:
-        st.info("No submissions available yet.")
 
 # === Admin Special Access (Optional) ===
 st.divider()
@@ -218,8 +199,10 @@ if st.checkbox("📄 View Past Submissions"):
 
     csv = all_data.to_csv(index=False).encode('utf-8')
     st.download_button(
-        label="⬇️ Download All Responses",
-        data=csv,
-        file_name='all_survey_responses.csv',
-        mime='text/csv'
-    )
+    label="⬇️ Download All Responses (Admin)",
+    data=csv,
+    file_name='all_survey_responses.csv',
+    mime='text/csv',
+    key='admin_csv_download'
+)
+
