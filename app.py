@@ -169,21 +169,40 @@ if submit:
         'Surveyor Name': [surveyor_name],
         'Date of Visit': [visit_date]
     }
-    df = pd.DataFrame(data)
+     df = pd.DataFrame(data)
     filename = f"survey_{now.strftime('%Y%m%d_%H%M%S')}.csv"
     df.to_csv(os.path.join(SAVE_DIR, filename), index=False, encoding='utf-8')
     st.success("✅ Survey Submitted and Saved!")
 
-# View Past Submissions
-if st.checkbox("📄 View Past Submissions"):
-    files = os.listdir(SAVE_DIR)
-    all_data = pd.concat([pd.read_csv(os.path.join(SAVE_DIR, f)) for f in files if f.endswith('.csv')], ignore_index=True)
-    st.dataframe(all_data)
 
-    csv = all_data.to_csv(index=False).encode('utf-8')
-    st.download_button(
-        label="⬇️ Download All Responses",
-        data=csv,
-        file_name='all_survey_responses.csv',
-        mime='text/csv'
-    )
+st.divider()
+st.header("🔐 Admin Real-Time Access")
+
+# Allowed Emails
+ALLOWED_EMAILS = ["shifalis@tns.org", "rmukherjee@tns.org","rsomanchi@tns.org", "mkaushal@tns.org"]
+admin_email = st.text_input("Enter your Admin Email to unlock extra features:")
+
+if admin_email in ALLOWED_EMAILS:
+    st.success("✅ Admin access granted! Real-time view enabled.")
+
+else:
+    if admin_email:
+        st.error("❌ Not an authorized admin.")
+    
+if st.checkbox("📄 View Past Submissions"):
+    files = [f for f in os.listdir(SAVE_DIR) if f.endswith('.csv')]
+    if files:
+        all_data = pd.concat([pd.read_csv(os.path.join(SAVE_DIR, f)) for f in files], ignore_index=True)
+        st.dataframe(all_data)
+
+        csv = all_data.to_csv(index=False).encode('utf-8')
+        st.download_button(
+            label="⬇️ Download All Responses",
+            data=csv,
+            file_name='all_survey_responses.csv',
+            mime='text/csv',
+            key='public_csv_download'
+        )
+    else:
+        st.warning("⚠️ No submissions found yet.")
+
