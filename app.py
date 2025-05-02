@@ -13,7 +13,7 @@ os.makedirs(SAVE_DIR, exist_ok=True)
 dict_translations = {
     'English': {
         'Language': 'Language', 'Farmer Profile': 'Farmer Profile', 'HPC/MCC Name': 'HPC/MCC Name',
-        'HPC/MCC Code': 'HPC/MCC Code', 'Types': 'Type', 'HPCC': 'HPCC', 'MCC': 'MCC',
+        'HPC/MCC Code': 'HPC/MCC Code', 'Types': 'Type', 'HPC': 'HPC', 'MCC': 'MCC',
         'Farmer Name': 'Farmer Name', 'Farmer Code': 'Farmer Code / Pourer ID', 'Gender': 'Gender',
         'Male': 'Male', 'Female': 'Female', 'Farm Details': 'Farm Details',
         'Number of Cows': 'Number of Cows', 'No. of Cattle in Milk': 'No. of Cattle in Milk',
@@ -35,7 +35,7 @@ dict_translations = {
     },
     'Hindi': {
         'Language': 'भाषा', 'Farmer Profile': 'किसान प्रोफ़ाइल', 'HPC/MCC Name': 'एचपीसी/एमसीसी नाम',
-        'HPC/MCC Code': 'एचपीसी/एमसीसी कोड', 'Types': 'प्रकार', 'HPCC': 'एचपीसीसी', 'MCC': 'एमसीसी',
+        'HPC/MCC Code': 'एचपीसी/एमसीसी कोड', 'Types': 'प्रकार', 'HPC': 'एचपीसी', 'MCC': 'एमसीसी',
         'Farmer Name': 'किसान का नाम', 'Farmer Code': 'किसान कोड/दूधदाता आईडी', 'Gender': 'लिंग',
         'Male': 'पुरुष', 'Female': 'महिला', 'Farm Details': 'फार्म विवरण',
         'Number of Cows': 'गायों की संख्या', 'No. of Cattle in Milk': 'दूध देने वाले मवेशी',
@@ -57,7 +57,7 @@ dict_translations = {
     },
     'Telugu': {
         'Language': 'భాష', 'Farmer Profile': 'రైతు వివరాలు', 'HPC/MCC Name': 'HPC/MCC పేరు',
-        'HPC/MCC Code': 'HPC/MCC కోడ్', 'Types': 'రకం', 'HPCC': 'హెచ్‌పిసిసి', 'MCC': 'ఎంసిసి',
+        'HPC/MCC Code': 'HPC/MCC కోడ్', 'Types': 'రకం', 'HPC': 'హెచ్‌పిసి', 'MCC': 'ఎంసిసి',
         'Farmer Name': 'రైతు పేరు', 'Farmer Code': 'రైతు కోడ్ / పోరర్ ఐడి', 'Gender': 'లింగం',
         'Male': 'పురుషుడు', 'Female': 'స్త్రీ', 'Farm Details': 'పంది వివరాలు',
         'Number of Cows': 'ఆవుల సంఖ్య', 'No. of Cattle in Milk': 'పాలలో ఉన్న పశువులు',
