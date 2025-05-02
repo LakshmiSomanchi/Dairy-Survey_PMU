@@ -57,8 +57,7 @@ dict_translations = {
     },
     'Telugu': {
         'Language': 'భాష', 'Farmer Profile': 'రైతు వివరాలు', 'HPC/MCC Name': 'HPC/MCC పేరు',
-        'HPC/MCC Code': 'HPC/MCC కోడ్', 'Types': 'రకం', 'HPC': 'హెచ్పిసి', 'MCC': 'ఎంసిసి', 'VLCC': 'వీఎల్సీసీ',
-        'Pellet Feed Brand': 'పెల్లెట్ ఫీడ్ బ్రాండ్', 'Mineral Mixture Brand': 'ఖనిజ మిశ్రమం బ్రాండ్', 'Others': 'ఇతర',
+        'HPC/MCC Code': 'HPC/MCC కోడ్', 'Types': 'రకం', 'HPC': 'హెచ్పిసి', 'MCC': 'ఎంసిసి',
         'Farmer Name': 'రైతు పేరు', 'Farmer Code': 'రైతు కోడ్ / పోరర్ ఐడి', 'Gender': 'లింగం',
         'Male': 'పురుషుడు', 'Female': 'స్త్రీ', 'Farm Details': 'పంది వివరాలు',
         'Number of Cows': 'ఆవుల సంఖ్య', 'No. of Cattle in Milk': 'పాలలో ఉన్న పశువులు',
@@ -169,11 +168,10 @@ if submit:
         'Surveyor Name': [surveyor_name],
         'Date of Visit': [visit_date]
     }
-     df = pd.DataFrame(data)
+    df = pd.DataFrame(data)
     filename = f"survey_{now.strftime('%Y%m%d_%H%M%S')}.csv"
     df.to_csv(os.path.join(SAVE_DIR, filename), index=False, encoding='utf-8')
     st.success("✅ Survey Submitted and Saved!")
-
 
 st.divider()
 st.header("🔐 Admin Real-Time Access")
@@ -184,11 +182,10 @@ admin_email = st.text_input("Enter your Admin Email to unlock extra features:")
 
 if admin_email in ALLOWED_EMAILS:
     st.success("✅ Admin access granted! Real-time view enabled.")
-
 else:
     if admin_email:
         st.error("❌ Not an authorized admin.")
-    
+
 if st.checkbox("📄 View Past Submissions"):
     files = [f for f in os.listdir(SAVE_DIR) if f.endswith('.csv')]
     if files:
@@ -205,4 +202,3 @@ if st.checkbox("📄 View Past Submissions"):
         )
     else:
         st.warning("⚠️ No submissions found yet.")
-
