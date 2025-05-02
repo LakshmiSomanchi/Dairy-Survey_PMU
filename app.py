@@ -176,7 +176,7 @@ if submit:
     df.to_csv(os.path.join(SAVE_DIR, filename), index=False, encoding='utf-8')
     st.success("✅ Survey Submitted and Saved!")
 
-# === Admin Special Access (Optional) ===
+
 st.divider()
 st.header("🔐 Admin Real-Time Access")
 
@@ -186,23 +186,25 @@ admin_email = st.text_input("Enter your Admin Email to unlock extra features:")
 
 if admin_email in ALLOWED_EMAILS:
     st.success("✅ Admin access granted! Real-time view enabled.")
-    # (Here you can later add: auto-refreshing dashboard, edit submissions, etc.)
+
 else:
     if admin_email:
         st.error("❌ Not an authorized admin.")
     
-# View Past Submissions
 if st.checkbox("📄 View Past Submissions"):
-    files = os.listdir(SAVE_DIR)
-    all_data = pd.concat([pd.read_csv(os.path.join(SAVE_DIR, f)) for f in files if f.endswith('.csv')], ignore_index=True)
-    st.dataframe(all_data)
+    files = [f for f in os.listdir(SAVE_DIR) if f.endswith('.csv')]
+    if files:
+        all_data = pd.concat([pd.read_csv(os.path.join(SAVE_DIR, f)) for f in files], ignore_index=True)
+        st.dataframe(all_data)
 
-    csv = all_data.to_csv(index=False).encode('utf-8')
-    st.download_button(
-    label="⬇️ Download All Responses (Admin)",
-    data=csv,
-    file_name='all_survey_responses.csv',
-    mime='text/csv',
-    key='admin_csv_download'
-)
+        csv = all_data.to_csv(index=False).encode('utf-8')
+        st.download_button(
+            label="⬇️ Download All Responses",
+            data=csv,
+            file_name='all_survey_responses.csv',
+            mime='text/csv',
+            key='public_csv_download'
+        )
+    else:
+        st.warning("⚠️ No submissions found yet.")
 
