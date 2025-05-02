@@ -55,7 +55,29 @@ dict_translations = {
         'Name of Surveyor': 'सर्वेक्षक का नाम', 'Date of Visit': 'दौरे की तिथि',
         'Submit': 'जमा करें', 'Yes': 'हाँ', 'No': 'नहीं', 'Download CSV': 'CSV डाउनलोड करें'
     },
-    'Telugu': { ... }  # Truncated for brevity
+    'Telugu': {
+        'Language': 'భాష', 'Farmer Profile': 'రైతు వివరాలు', 'HPC/MCC Name': 'HPC/MCC పేరు',
+        'HPC/MCC Code': 'HPC/MCC కోడ్', 'Types': 'రకం', 'HPC': 'హెచ్పిసి', 'MCC': 'ఎంసిసి', 'VLCC': 'వీఎల్సీసీ',
+        'Pellet Feed Brand': 'పెల్లెట్ ఫీడ్ బ్రాండ్', 'Mineral Mixture Brand': 'ఖనిజ మిశ్రమం బ్రాండ్', 'Others': 'ఇతర',
+        'Farmer Name': 'రైతు పేరు', 'Farmer Code': 'రైతు కోడ్ / పోరర్ ఐడి', 'Gender': 'లింగం',
+        'Male': 'పురుషుడు', 'Female': 'స్త్రీ', 'Farm Details': 'పంది వివరాలు',
+        'Number of Cows': 'ఆవుల సంఖ్య', 'No. of Cattle in Milk': 'పాలలో ఉన్న పశువులు',
+        'No. of Calves/Heifers': 'దూడలు/హెఫర్లు సంఖ్య', 'No. of Desi cows': 'దేశీ ఆవుల సంఖ్య',
+        'No. of Cross breed cows': 'క్రాస్‌బ్రీడ్ ఆవుల సంఖ్య', 'No. of Buffalo': 'గేదెల సంఖ్య',
+        'Milk Production': 'పాల ఉత్పత్తి (లీటర్లు/రోజు)', 'Specific Questions': 'ప్రత్యేక ప్రశ్నలు',
+        'Green Fodder': 'పచ్చి మేత', 'Type of Green Fodder': 'పచ్చి మేత రకం',
+        'Quantity of Green Fodder': 'పచ్చి మేత పరిమాణం (కిలో/రోజు)',
+        'Dry Fodder': 'పొడి మేత', 'Type of Dry Fodder': 'పొడి మేత రకం',
+        'Quantity of Dry Fodder': 'పొడి మేత పరిమాణం (కిలో/రోజు)',
+        'Concentrate Feed': 'సాంద్రీకృత దాణా', 'Brand of Concentrate Feed': 'సాంద్రీకృత దాణా బ్రాండ్',
+        'Quantity of Concentrate Feed': 'సాంద్రీకృత దాణా పరిమాణం (కిలో/రోజు)',
+        'Mineral Mixture': 'ఖనిజ మిశ్రమం', 'Brand of Mineral Mixture': 'ఖనిజ మిశ్రమం బ్రాండ్',
+        'Quantity of Mineral Mixture': 'ఖనిజ మిశ్రమం పరిమాణం (గ్రాములు/రోజు)',
+        'Silage': 'సైలేజ్', 'Source and Price of Silage': 'సైలేజ్ మూలం మరియు ధర',
+        'Quantity of Silage': 'సైలేజ్ పరిమాణం (కిలో/రోజు)', 'Source of Water': 'నీటి మూలం',
+        'Name of Surveyor': 'సర్వేయర్ పేరు', 'Date of Visit': 'సందర్శన తేదీ',
+        'Submit': 'సమర్పించండి', 'Yes': 'అవును', 'No': 'కాదు', 'Download CSV': 'CSV డౌన్‌లోడ్ చేయండి'
+    }
 }
 
 # Streamlit Page Config
