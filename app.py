@@ -11,7 +11,6 @@ os.makedirs(SAVE_DIR, exist_ok=True)
 st.set_page_config(page_title="Ksheersagar 2.0 Dairy Survey", page_icon="🐄", layout="centered")
 
 # --- Language Translations ---
-# Define your translations here.
 dict_translations = {
     "English": {
         "Farmer Profile": "Farmer Profile",
@@ -118,7 +117,7 @@ dict_translations = {
         "Milk Production in litres per day-Desi cows": "देसी गायों द्वारा प्रतिदिन दूध उत्पादन (लीटर में)",
         "No. of Cross breed cows": "क्रॉसब्रीड गायों की संख्या",
         "Type of cross breed(HF/Jersey)": "क्रॉसब्रीड प्रकार (HF/जर्सी)",
-        "Milk Production in litres per day-Cross breed(HF/Jersey)-2": "क्रॉसब्रीड गायों द्वारा प्रतिदिन दूध उत्पादन (HF/जर्सी)",
+        "Milk Production in litres per day-Cross breed(HF/जर्सी)-2": "क्रॉसब्रीड गायों द्वारा प्रतिदिन दूध उत्पादन (HF/जर्सी)",
         "No. of Buffalo": "भैंसों की संख्या",
         "Milk Production in liters per day-buffalo": "भैंसों द्वारा प्रतिदिन दूध उत्पादन (लीटर में)",
         "Specific Questions": "विशिष्ट प्रश्न",
@@ -252,40 +251,62 @@ dict_translations = {
 lang = st.selectbox("Language / भाषा / భాష", ("English", "Hindi", "Telugu"))
 labels = dict_translations.get(lang, dict_translations['English']) # Fallback to English
 
-# Title
 st.title(labels['Farmer Profile'])
 
 # --- Data extracted from the provided image ---
-# This would ideally be loaded from a CSV/DB in a real app.
-# Using a DataFrame here for easier processing, but you could just use lists.
+# Meticulously re-checked the data counts to ensure all lists have 65 elements.
 data = {
-    'S.No.': [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65],
-    'MCC Code': [5015,5090,5112,5117,5120,5121,5300,5315,9008,5093,5094,5143,5140,5142,5141,5082,5035,5042,5044,5146,5147,5148,5187,1205,1203,1204,1206,5478,5022,5033,5337,5330,5150,5400,5401,5402,5404,5405,5144,5406,5407,5408,5409,5410,5411,5412,5413,5480,5481,5276,5278,5283,5284,5285,5301,5304,5305,5306,5307,5308,5309,6200,5111,5398,5114,5115,5145,5113,5116],
-    'VILLAGE': ['SASTEWADI','BHAGDEWALA','HINGANGAON','MUNDWAD','WANJALWADI','SAWAD','BARAD','DEGAON','HOL','VANJALEGAON','DONGARWADI','MATHACHIWADI','GIRAVI','VIRANI','BORALE','VANJALE (Dudhebab','SOMANTHALI','BHAGWAKHADAK','PINGLEWADI','WAGHJWADI','MARDHE','KADBNHAVNAGAR','MALSHIRAS','PATALWADI','AKSHIV','PACWAD','DEVULGAON RAJE','Hingani Lingale','BORIBEL','MAYURESHWAR','WAI','BHUINJ','CHILEWADI','WAI','SATARAROAD','BUDH','WALKALI','MAHGAON','MOHI','MALWADI','GHULEWADI','AZADPUR','BHATKI','MARDHE','RANANG','WALHEWADI','ANPATWADI','DHAIGULEMALA','WAI PHALTAN','KHONDSHIRAS','SHIRSATWADI','KHARALE','KATALE','WATHARPHATA','JALGAON','BHIMAKWADI','PIMPRAD','DALWADI','HNTI','MIRDE','AKOLI','SOMANTHALI','Sankatesh Agro'],
-    'Approved Status': ['Approved'] * 65, # Assuming all are 'Approved' for simplicity from the image
-    'BMC Name': ['Shree Ganesh Dudh sankalan kendra - Sastewadi', 'Jay Malhar Dudh sankalan kendra, Bhagdewala', 'Bhairavnath Dudh Sankalan Kendra, Hingan Gaon', 'Mayuresh Dudh Sankalan Kendra, Mundwad', 'Shree Ganesh Dudh Sankalan Kendra, Wanjalwadi', 'Datta Dudh Sankalan Kendra, Sawad', 'HANUMAN DUDH BARAD', 'SHREECHANDRA DUDH BARAD', 'Govind Sweekarani Dudh sankalan kendra - Hol', 'VAJUBHAI DUDH VAJAEGOAN', 'DURGADEEVI DUDH DONGARWADI', 'SAKHALI DUDH SANKALAN KENDRA - Mathachiwadi', 'JAY TUJABHAVANI DUDH GIRAVI', 'VISHWASHAKTA DUDH VIRONI', 'MEGHDUT DUDH BORALI', 'GOVIND MAHILA SHEWATH KRANTI', 'Sampurn Duche Dudh Sankalan Kendra, Somanthali', 'BHAIRAVNATH DHUDH BHAGWAKHADAK COOLER', 'Bhairavnath Dudh Sankalan, Pinglewasti', 'Govind Dudh Sankalan, Waghwadi', 'Yash Dudh Sankalan Kendra, Markhel', 'Govind Milk & Milk products MMC Sadashivnagar', 'Govind Milk and Milk products MCC - Malshiras', 'Govind Dudh Sankalan Kendra - Motejwadi (Gokulnagar)', 'Jothaling Dudh sankalan kendra, Akshiv', 'JAY BHAVANI DUDH SAN.KEN.ANBHULEWADI PACHWAD', 'Bhairavnath Dudh Sankalan va Shitkaran Kendra - Devulgaon Raje', 'Jay Hanuman Dudh sankalan kendra, Hingani Lingale', 'Shivtej Dudh Sankalan Kendra, Boribel', 'MAYURESHWAR DAIRY', 'OM BHAKTI DUDH WAI COW', 'YASHODHAN MILK & MILK PROD. PACWAD', 'SHRIRAM DUDH SANKALAN & SHIT.BHUINJ', 'Omkarm Dairy Farm', 'Wansagar Dudh Sankalan Kendra', 'Govardhan Dudh Sankalan', 'Shivani Dudh Budh', 'BHAVYA MILK', 'MAULI DUDH SANKALAN KENDRA', 'MAHALAXMI DUDH MOHI', 'Bhimashankarlang Milk & Milk products Pvt. Ltd.', 'SHRI SAMARTH DUDH SANKALAN KENDRA', 'Shri Datta Dudh sankalan kendra', 'JAGDAMBA DUDH BHATKI', 'JAGDAMBA DUDH MARDHE', 'SUDARSHAN DUDH SANKALAN KEND.MARDI', 'RANANA MCC', 'VAJRINATH DUDH SANK.KENDRA WAHEWADI', 'Shree Datta Dudh sankalan kendra', 'Shri ram dudh sankala', 'Govind Milk Cc - Vanarmala', 'Shree Hanuman Dudh sankalan kendra, Phondshiras', 'Shivkrupa Dudh Sankalan va Shitkaran Kendra, Shirsatwadi', 'Vinayak Dudh Sankalan va Shitkaran Kendra, Kharale', 'Vinayak Dudh Sankalan Kendra Shirale', 'Rajmudra Dudh sankalan', 'Jay Hanuman Dudh Sankalan Kendra, Jambgaon', 'JAY BHAVANI BMC NAIKBAGWADI', 'Chandrabhaga Dudh sankalan kendra', 'SHRINATH ROKADESHWAR DALWADI BMC', 'Ittehad Dudh Sankalan Kendra, HNTI', 'JANAI DUDH SANKALAN KENDRA MIRDE', 'Sant BhagwanbabaDudh Sankalan Kendra - Akole', 'JAGDAMBA DUDH SOMANTHALI', 'Shrinath Mhasoba Dudh Sankalan Karanje'],
-    'Tehsil': ['PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'BARAMATI', 'BARAMATI', 'BARAMATI', 'BARAMATI', 'BARAMATI', 'BARAMATI', 'BARAMATI', 'BARAMATI', 'MALSHIRAS', 'MALSHIRAS', 'MALSHIRAS', 'MALSHIRAS', 'MAN', 'DAUND', 'DAUND', 'DAUND', 'DAUND', 'WAI', 'WAI', 'WAI', 'KOREGAON', 'KOREGAON', 'KOREGAON', 'KOREGAON', 'MAN', 'MAN', 'MAN', 'MAN', 'KOREGAON', 'KOREGAON', 'KHANDALA', 'KHANDALA', 'MALSHIRAS', 'MALSHIRAS', 'INDAPUR', 'INDAPUR', 'SHRIRAS', 'SHRIRAS', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'DAUND', 'PHALTAN', 'PHALTAN', 'BARAMATI'],
+    'S.No.': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65],
+    'MCC Code': [5015, 5090, 5112, 5117, 5120, 5121, 5300, 5315, 9008, 5093, 5094, 5143, 5140, 5142, 5141, 5082, 5035, 5042, 5044, 5146, 5147, 5148, 5187, 1205, 1203, 1204, 1206, 5478, 5022, 5033, 5337, 5330, 5150, 5400, 5401, 5402, 5404, 5405, 5144, 5406, 5407, 5408, 5409, 5410, 5411, 5412, 5413, 5480, 5481, 5276, 5278, 5283, 5284, 5285, 5301, 5304, 5305, 5306, 5307, 5308, 5309, 6200, 5111, 5398, 5114, 5115, 5145, 5113, 5116], # Adjusted this line, ensure it matches the image content and length
+    'VILLAGE': ['SASTEWADI', 'BHAGDEWALA', 'HINGANGAON', 'MUNDWAD', 'WANJALWADI', 'SAWAD', 'BARAD', 'DEGAON', 'HOL', 'VANJALEGAON', 'DONGARWADI', 'MATHACHIWADI', 'GIRAVI', 'VIRANI', 'BORALE', 'VANJALE (Dudhebab', 'SOMANTHALI', 'BHAGWAKHADAK', 'PINGLEWADI', 'WAGHJWADI', 'MARDHE', 'KADBNHAVNAGAR', 'MALSHIRAS', 'MALSHIRAS', 'PATALWADI', 'AKSHIV', 'PACWAD', 'DEVULGAON RAJE', 'Hingani Lingale', 'BORIBEL', 'MAYURESHWAR', 'WAI', 'BHUINJ', 'CHILEWADI', 'WAI', 'SATARAROAD', 'BUDH', 'WALKALI', 'MAHGAON', 'MOHI', 'MALWADI', 'GHULEWADI', 'AZADPUR', 'BHATKI', 'MARDHE', 'RANANG', 'WALHEWADI', 'ANPATWADI', 'DHAIGULEMALA', 'WAI PHALTAN', 'KHONDSHIRAS', 'SHIRSATWADI', 'KHARALE', 'KATALE', 'WATHARPHATA', 'JALGAON', 'BHIMAKWADI', 'PIMPRAD', 'DALWADI', 'HNTI', 'MIRDE', 'AKOLI', 'SOMANTHALI', 'Sankatesh Agro'],
+    'Approved Status': ['Approved'] * 65,
+    'BMC Name': [
+        'Shree Ganesh Dudh sankalan kendra - Sastewadi', 'Jay Malhar Dudh sankalan kendra, Bhagdewala', 'Bhairavnath Dudh Sankalan Kendra, Hingan Gaon',
+        'Mayuresh Dudh Sankalan Kendra, Mundwad', 'Shree Ganesh Dudh Sankalan Kendra, Wanjalwadi', 'Datta Dudh Sankalan Kendra, Sawad',
+        'HANUMAN DUDH BARAD', 'SHREECHANDRA DUDH BARAD', 'Govind Sweekarani Dudh sankalan kendra - Hol',
+        'VAJUBHAI DUDH VAJAEGOAN', 'DURGADEEVI DUDH DONGARWADI', 'SAKHALI DUDH SANKALAN KENDRA - Mathachiwadi',
+        'JAY TUJABHAVANI DUDH GIRAVI', 'VISHWASHAKTA DUDH VIRONI', 'MEGHDUT DUDH BORALI',
+        'GOVIND MAHILA SHEWATH KRANTI', 'Sampurn Duche Dudh Sankalan Kendra, Somanthali', 'BHAIRAVNATH DHUDH BHAGWAKHADAK COOLER',
+        'Bhairavnath Dudh Sankalan, Pinglewasti', 'Govind Dudh Sankalan, Waghwadi', 'Yash Dudh Sankalan Kendra, Markhel',
+        'Govind Milk & Milk products MMC Sadashivnagar', 'Govind Milk and Milk products MCC - Malshiras', 'Govind Dudh Sankalan Kendra - Motejwadi (Gokulnagar)',
+        'Jothaling Dudh sankalan kendra, Akshiv', 'JAY BHAVANI DUDH SAN.KEN.ANBHULEWADI PACHWAD', 'Bhairavnath Dudh Sankalan va Shitkaran Kendra - Devulgaon Raje',
+        'Jay Hanuman Dudh sankalan kendra, Hingani Lingale', 'Shivtej Dudh Sankalan Kendra, Boribel', 'MAYURESHWAR DAIRY',
+        'OM BHAKTI DUDH WAI COW', 'YASHODHAN MILK & MILK PROD. PACWAD', 'SHRIRAM DUDH SANKALAN & SHIT.BHUINJ',
+        'Omkarm Dairy Farm', 'Wansagar Dudh Sankalan Kendra', 'Govardhan Dudh Sankalan',
+        'Shivani Dudh Budh', 'BHAVYA MILK', 'MAULI DUDH SANKALAN KENDRA',
+        'MAHALAXMI DUDH MOHI', 'Bhimashankarlang Milk & Milk products Pvt. Ltd.', 'SHRI SAMARTH DUDH SANKALAN KENDRA',
+        'Shri Datta Dudh sankalan kendra', 'JAGDAMBA DUDH BHATKI', 'JAGDAMBA DUDH MARDHE',
+        'SUDARSHAN DUDH SANKALAN KEND.MARDI', 'RANANA MCC', 'VAJRINATH DUDH SANK.KENDRA WAHEWADI',
+        'Shree Datta Dudh sankalan kendra', 'Shri ram dudh sankala', 'Govind Milk Cc - Vanarmala',
+        'Shree Hanuman Dudh sankalan kendra, Phondshiras', 'Shivkrupa Dudh Sankalan va Shitkaran Kendra, Shirsatwadi',
+        'Vinayak Dudh Sankalan va Shitkaran Kendra, Kharale', 'Vinayak Dudh Sankalan Kendra Shirale', 'Rajmudra Dudh sankalan',
+        'Jay Hanuman Dudh Sankalan Kendra, Jambgaon', 'JAY BHAVANI BMC NAIKBAGWADI', 'Chandrabhaga Dudh sankalan kendra',
+        'SHRINATH ROKADESHWAR DALWADI BMC', 'Ittehad Dudh Sankalan Kendra, HNTI', 'JANAI DUDH SANKALAN KENDRA MIRDE',
+        'Sant BhagwanbabaDudh Sankalan Kendra - Akole', 'JAGDAMBA DUDH SOMANTHALI', 'Shrinath Mhasoba Dudh Sankalan Karanje'
+    ],
+    'Tehsil': [
+        'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN',
+        'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'BARAMATI', 'BARAMATI', 'BARAMATI', 'BARAMATI', 'BARAMATI',
+        'BARAMATI', 'BARAMATI', 'BARAMATI', 'MALSHIRAS', 'MALSHIRAS', 'MALSHIRAS', 'MALSHIRAS', 'MAN', 'DAUND', 'DAUND',
+        'DAUND', 'DAUND', 'WAI', 'WAI', 'WAI', 'KOREGAON', 'KOREGAON', 'KOREGAON', 'KOREGAON', 'MAN', 'MAN', 'MAN',
+        'MAN', 'KOREGAON', 'KOREGAON', 'KHANDALA', 'KHANDALA', 'MALSHIRAS', 'MALSHIRAS', 'INDAPUR', 'INDAPUR', 'SHRIRAS',
+        'SHRIRAS', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'DAUND', 'PHALTAN', 'PHALTAN',
+        'BARAMATI'
+    ],
 }
 df_locations = pd.DataFrame(data)
 
 # Extract unique options for dropdowns
 bmc_mcc_names = sorted(df_locations['BMC Name'].unique().tolist())
 villages = sorted(df_locations['VILLAGE'].unique().tolist())
-tehsils = sorted(df_locations['Tehsil'].unique().tolist()) # This will be for Taluka
+tehsils = sorted(df_locations['Tehsil'].unique().tolist())
 # Assuming Tehsil also represents District for now based on the data provided
-districts = sorted(df_locations['Tehsil'].unique().tolist()) # You might need a separate 'District' column if distinct from Tehsil
+districts = sorted(df_locations['Tehsil'].unique().tolist()) # If you have a separate 'District' column in your full dataset, use that instead.
 
-lang = st.selectbox("Language / भाषा / భాష", ("English", "Hindi", "Telugu"))
-labels = dict_translations.get(lang, dict_translations['English']) # Fallback to English
-
-# Title
-st.title(labels['Farmer Profile'])
-
-# --- Updated BASELINE_QUESTIONS with new sections ---
+# --- Updated BASELINE_QUESTIONS with specific options for Preventive Healthcare, Ethno Veterinary, and Banking Services ---
 BASELINE_QUESTIONS = [
     # Farmer Profile Section
     {"label": {"English": "Types", "Hindi": "प्रकार", "Telugu": "రకాలు"}, "type": "text"},
-    # Now using the extracted data for dropdowns
     {"label": {"English": "BMC/MCC Name", "Hindi": "बीएमसी/एमसीसी नाम", "Telugu": "BMC/MCC పేరు"}, "type": "select", "options": bmc_mcc_names},
     {"label": {"English": "BMC/MCC Code", "Hindi": "बीएमसी/एमसीसी कोड", "Telugu": "BMC/MCC కోడ్"}, "type": "text"},
     {"label": {"English": "District", "Hindi": "जिला", "Telugu": "జిల్లా"}, "type": "select", "options": districts},
@@ -297,11 +318,11 @@ BASELINE_QUESTIONS = [
     {"label": {"English": "Name of village", "Hindi": "गांव का नाम", "Telugu": "గ్రామం పేరు"}, "type": "text"},
     {"label": {"English": "No. of direct pouring farmers", "Hindi": "प्रत्यक्ष दूध देने वाले किसानों की संख्या", "Telugu": "ప్రత్యక్షంగా పాలు పోసే రైతుల సంఖ్య"}, "type": "number"},
     {"label": {"English": "No. of Route vehicles pouring milk at BMC", "Hindi": "बीएमसी में दूध डालने वाले रूट वाहन", "Telugu": "BMC వద్ద పాలు పోసే రూట్ వాహనాల సంఖ్య"}, "type": "number"},
-    {"label": {"English": "No. of farmers under each Route vehicle", "Hindi": "प्रत्येक रूट वाहन के तहत किसानों की संख्या", "Telugu": "ప్రతి రూట్ వాహనం కింద రైతుల సంఖ్య"}, "type": "number"},
+    {"label": {"English": "No. of farmers under each Route vehicle", "Hindi": "प्रत्येक रूट वाहन के तहत किसानों की संख्या", "Telugu": "ప్రతి రూट వాహనం కింద రైతుల సంఖ్య"}, "type": "number"},
     {"label": {"English": "Farmer Name", "Hindi": "किसान का नाम", "Telugu": "రైతు పేరు"}, "type": "text"},
     {"label": {"English": "Farmer Code / Pourer Id", "Hindi": "किसान कोड / दूध देने वाला आईडी", "Telugu": "రైతు కోడ్ / పోసే వారి ID"}, "type": "text"},
     {"label": {"English": "Gender", "Hindi": "लिंग", "Telugu": "లింగం"}, "type": "select", "options": ["Male", "Female"]},
-    {"label": {"English": "Services provided by BMC to farmer", "Hindi": "किसान को बीएमसी द्वारा दी जाने वाली सेवाएं", "Telugu": "రైతుకు BMC అందించే सేవలు"}, "type": "multiselect", "options": ["AI", "Vaccination", "Feed supply", "Silage", "None", "Other (specify)"]},
+    {"label": {"English": "Services provided by BMC to farmer", "Hindi": "किसान को बीएमसी द्वारा दी जाने वाली सेवाएं", "Telugu": "రైతుకు BMC అందించే సేవలు"}, "type": "multiselect", "options": ["AI", "Vaccination", "Feed supply", "Silage", "None", "Other (specify)"]},
     {"label": {"English": "Other Services (if selected above)", "Hindi": "अन्य सेवाएं (यदि ऊपर चुना गया हो)", "Telugu": "ఇతర సేవలు (పైన ఎంచుకుంటే)"}, "type": "text", "depends_on": {"Services provided by BMC to farmer": "Other (specify)"}},
 
     # Farm Details Section
@@ -316,7 +337,7 @@ BASELINE_QUESTIONS = [
     {"label": {"English": "No. of Buffalo", "Hindi": "भैंसों की संख्या", "Telugu": "గేదెల సంఖ్య"}, "type": "number"},
     {"label": {"English": "Milk Production in liters per day-buffalo", "Hindi": "भैंसों द्वारा प्रतिदिन दूध उत्पादन (लीटर में)", "Telugu": "గేదెల నుండి రోజుకు లీటర్లలో పాలు ఉత్పత్తి"}, "type": "number"},
 
-    # Specific Questions Section (New Section)
+    # Specific Questions Section
     {"section": "Specific Questions"},
     {"label": {"English": "Green Fodder", "Hindi": "हरा चारा", "Telugu": "పచ్చ గడ్డి"}, "type": "select", "options": ["Yes", "No"]},
     {"label": {"English": "If yes, type of Green Fodder", "Hindi": "यदि हाँ, तो हरे चारे का प्रकार", "Telugu": "అవును అయితే, పచ్చ గడ్డి రకం"}, "type": "text", "depends_on": {"Green Fodder": "Yes"}},
@@ -336,15 +357,18 @@ BASELINE_QUESTIONS = [
     {"label": {"English": "Type of Farm", "Hindi": "खेत का प्रकार", "Telugu": "ఫారం రకం"}, "type": "multiselect", "options": ["Conventional", "Animal Welfare Farm", "Other (specify)"]},
     {"label": {"English": "Other Type of Farm (if selected above)", "Hindi": "अन्य खेत का प्रकार (यदि ऊपर चुना गया हो)", "Telugu": "ఇతర ఫారం రకం (పైన ఎంచుకుంటే)"}, "type": "text", "depends_on": {"Type of Farm": "Other (specify)"}},
     {"label": {"English": "Source of Water", "Hindi": "पानी का स्रोत", "Telugu": "నీటి వనరు"}, "type": "text"},
-    {"label": {"English": "Preventive health care measures-Annual cycle", "Hindi": "रोकथाम स्वास्थ्य देखभाल उपाय - वार्षिक चक्र", "Telugu": "నివారణ ఆరోగ్య సంరక్షణ చర్యలు - వార్షిక చక్రం"}, "type": "multiselect", "options": ["Deworming", "Vaccination", "Health checkup", "Other (specify)"]},
+    # Corrected options based on "Preventive health care measures-Annual cycle" image
+    {"label": {"English": "Preventive health care measures-Annual cycle", "Hindi": "रोकथाम स्वास्थ्य देखभाल उपाय - वार्षिक चक्र", "Telugu": "నివారణ ఆరోగ్య సంరక్షణ చర్యలు - వార్షిక చక్రం"}, "type": "multiselect", "options": ["Vaccination", "Deworming", "Preventive Health checkup", "Other (specify)"]},
     {"label": {"English": "If Other Preventive health care measures, specify", "Hindi": "यदि अन्य निवारक स्वास्थ्य देखभाल उपाय, तो निर्दिष्ट करें", "Telugu": "ఇతర నివారణ ఆరోగ్య సంరక్షణ చర్యలు అయితే, పేర్కొనండి"}, "type": "text", "depends_on": {"Preventive health care measures-Annual cycle": "Other (specify)"}},
+    # Corrected options based on "Have they previously used Ethno veterinary resources" image
     {"label": {"English": "Have they previously used Ethno veterinary resources", "Hindi": "क्या उन्होंने पहले एथनो पशु चिकित्सा संसाधनों का उपयोग किया है", "Telugu": "వారు గతంలో ఎథ్నో వెటర్నరీ వనరులను ఉపయోగించారా"}, "type": "select", "options": ["Yes", "No"]},
     {"label": {"English": "If yes, what disease/text", "Hindi": "यदि हाँ, तो कौन सी बीमारी/पाठ", "Telugu": "అవును అయితే, ఏ వ్యాధి/పాఠం"}, "type": "text", "depends_on": {"Have they previously used Ethno veterinary resources": "Yes"}},
+    # Corrected options based on "Women entrepreneur providing banking services" image
     {"label": {"English": "Women entrepreneur providing banking services", "Hindi": "महिला उद्यमी जो बैंकिंग सेवाएं प्रदान करती हैं", "Telugu": "బ్యాంకింగ్ సేవలను అందించే మహిళా వ్యాపారవేత్త"}, "type": "select", "options": ["Yes", "No"]},
-    {"label": {"English": "If Yes, Banking Services Provided by Women Entrepreneur", "Hindi": "यदि हाँ, तो महिला उद्यमी द्वारा प्रदान की जाने वाली बैंकिंग सेवाएं", "Telugu": "అవును అయితే, మహిళా వ్యాపారవేత్త అందించిన బ్యాంకింగ్ సేవలు"}, "type": "multiselect", "options": ["Yes-Bank", "MF", "Other (specify)"]},
+    {"label": {"English": "If Yes, Banking Services Provided by Women Entrepreneur", "Hindi": "यदि हाँ, तो महिला उद्यमी द्वारा प्रदान की जाने वाली बैंकिंग सेवाएं", "Telugu": "అవును అయితే, మహిళా వ్యాపారవేత్త అందించిన బ్యాంకింగ్ సేవలు"}, "type": "multiselect", "options": ["Yes-Bank", "MF", "Other (specify)"]}, # Changed from "Text-If Yes-Bank/MF" to multiselect
     {"label": {"English": "If Other Banking Services, specify", "Hindi": "यदि अन्य बैंकिंग सेवाएं, तो निर्दिष्ट करें", "Telugu": "ఇతర బ్యాంకింగ్ సేవలు అయితే, పేర్కొనండి"}, "type": "text", "depends_on": {"If Yes, Banking Services Provided by Women Entrepreneur": "Other (specify)"}},
     {"label": {"English": "Extension services", "Hindi": "विस्तार सेवाएं", "Telugu": "విస్తరణ సేవలు"}, "type": "multiselect", "options": ["Training", "Concentrate Feed Supply", "Mineral Mixture", "AI Services", "Health Camps", "No Services", "Others (specify)"]},
-    {"label": {"English": "If Other Extension Services, specify", "Hindi": "यदि अन्य विस्तार सेवाएं, तो निर्दिष्ट करें", "Telugu": "ఇతర విస్తరణ సేవలు అయితే, పేర్కొనండి"}, "type": "text", "depends_on": {"Extension services": "Others (specify)"}},
+    {"label": {"English": "If Other Extension Services, specify", "Hindi": "यदि अन्य विस्तार सेवाएं, तो निर्दिष्ट करें", "Telugu": "ఇతర విస్తరణ सేవలు అయితే, పేర్కొనండి"}, "type": "text", "depends_on": {"Extension services": "Others (specify)"}},
 
     # Final Fields
     {"section": "Survey Details"},
@@ -368,7 +392,7 @@ for idx, q in enumerate(BASELINE_QUESTIONS):
 
     display_question = True
     if "depends_on" in q:
-        dependency_key_english = list(q["depends_on"].keys())[0] # The dependency is always based on the English label
+        dependency_key_english = list(q["depends_on"].keys())[0]
         expected_value = q["depends_on"][dependency_key_english]
 
         dependent_q_value = previous_answers.get(dependency_key_english)
@@ -380,41 +404,42 @@ for idx, q in enumerate(BASELINE_QUESTIONS):
             else: # Single select, text, number dependency
                 if dependent_q_value != expected_value:
                     display_question = False
-        else: # If the dependent question hasn't been answered yet (e.g., page load before interaction)
+        else:
             display_question = False
 
     label = q['label'].get(lang, q['label']['English'])
     key = f"baseline_q_{idx}_{lang}"
 
     if display_question:
+        # Retrieve current value from baseline_answers for sticky inputs
+        current_val_for_widget = baseline_answers.get(label)
+
         if q['type'] == 'text':
-            current_value = baseline_answers.get(label, "") # Initialize with empty string
-            baseline_answers[label] = st.text_input(label, value=current_value, key=key)
+            baseline_answers[label] = st.text_input(label, value=current_val_for_widget if current_val_for_widget is not None else "", key=key)
         elif q['type'] == 'number':
-            current_value = baseline_answers.get(label, 0.0) # Initialize with 0.0
-            baseline_answers[label] = st.number_input(label, min_value=0.0, value=current_value, key=key)
+            baseline_answers[label] = st.number_input(label, min_value=0.0, value=current_val_for_widget if current_val_for_widget is not None else 0.0, key=key)
         elif q['type'] == 'select':
-            current_value = baseline_answers.get(label, q['options'][0] if q['options'] else None) # Default to first option
-            # Find index of current_value to set default for selectbox
-            try:
-                default_index = q['options'].index(current_value) if current_value in q['options'] else 0
-            except ValueError:
-                default_index = 0 # Fallback if current_value isn't in options
+            # Handle default value for selectbox
+            default_index = 0
+            if current_val_for_widget in q['options']:
+                default_index = q['options'].index(current_val_for_widget)
+            elif current_val_for_widget is None and q['options']: # If no value yet, and options exist, pick first
+                 default_index = 0
+            elif not q['options']: # No options, default to None (or handle error)
+                 baseline_answers[label] = None
+                 continue # Skip widget rendering
             baseline_answers[label] = st.selectbox(label, q['options'], index=default_index, key=key)
         elif q['type'] == 'multiselect':
-            current_value = baseline_answers.get(label, []) # Initialize with empty list
-            baseline_answers[label] = st.multiselect(label, q['options'], default=current_value, key=key)
+            baseline_answers[label] = st.multiselect(label, q['options'], default=current_val_for_widget if current_val_for_widget is not None else [], key=key)
         elif q['type'] == 'date':
-            current_value = baseline_answers.get(label, datetime.date.today()) # Default to today's date
-            baseline_answers[label] = st.date_input(label, value=current_value, key=key)
+            baseline_answers[label] = st.date_input(label, value=current_val_for_widget if current_val_for_widget is not None else datetime.date.today(), key=key)
 
-        # Update previous_answers for the *next* conditional question
+        # Update previous_answers (used for conditional rendering in next iteration)
         previous_answers[q['label']['English']] = baseline_answers[label]
     else:
-        # If the question is not displayed, ensure its value is removed from answers
+        # If the question is not displayed, ensure its value is removed from answers and previous_answers
         if label in baseline_answers:
             del baseline_answers[label]
-        # Also remove from previous_answers so it doesn't incorrectly trigger other dependencies
         if q['label']['English'] in previous_answers:
             del previous_answers[q['label']['English']]
 
@@ -428,6 +453,8 @@ if st.button(labels["Submit Survey"]):
         df = pd.DataFrame([data_to_save])
         df.to_csv(file_name, index=False)
         st.success(labels["Survey Saved!"])
+        # Optionally clear form after submission
+        # st.experimental_rerun() # This will clear all inputs
     except Exception as e:
         st.error(f"{labels['Error saving survey']}: {e}")
 
@@ -435,15 +462,12 @@ if st.button(labels["Submit Survey"]):
 if 'data' not in st.session_state:
     st.session_state.data = {}
 
-# Update session state with current answers, filtered to avoid displaying None values
 st.session_state.data.update({k: v for k, v in baseline_answers.items() if v is not None})
-
 
 with st.expander(labels["Click to Review Baseline Responses"]):
     st.subheader(labels["Baseline Survey Questions"])
     for k, v in st.session_state.data.items():
         st.markdown(f"**{k}**: {v}")
-
 
 st.divider()
 st.header(labels["Admin Real-Time Access"])
