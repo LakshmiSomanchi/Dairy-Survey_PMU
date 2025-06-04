@@ -40,8 +40,9 @@ BASELINE_QUESTIONS = [
 
 # Collect answers
 baseline_answers = {}
-st.header("\ud83d\udccb " + labels.get('Farmer Profile', 'Farmer Profile'))
 
+# Render form UI
+st.header("📋 Baseline Survey Questions")
 for idx, q in enumerate(BASELINE_QUESTIONS):
     label = q['label'].get(lang, q['label']['English'])
     key = f"baseline_q_{idx}"
@@ -54,3 +55,56 @@ for idx, q in enumerate(BASELINE_QUESTIONS):
         baseline_answers[label] = st.selectbox(label, q['options'], key=key)
     elif q['type'] == 'multiselect':
         baseline_answers[label] = st.multiselect(label, q['options'], key=key)
+
+# Display responses in summary (to integrate into app.py)
+if 'data' in globals():
+    data.update(baseline_answers)
+    with st.expander("🔍 Click to Review Baseline Responses"):
+        st.subheader("📋 Baseline Questions")
+        for k in baseline_answers:
+            st.markdown(f"**{k}**: {data.get(k)}")
+
+st.divider()
+st.header("🔐 Admin Real-Time Access")
+
+# Allowed Emails
+ALLOWED_EMAILS = ["shifalis@tns.org", "rmukherjee@tns.org","rsomanchi@tns.org", "mkaushal@tns.org"]
+admin_email = st.text_input("Enter your Admin Email to unlock extra features:")
+
+if admin_email in ALLOWED_EMAILS:
+    st.success("✅ Admin access granted! Real-time view enabled.")
+
+if st.checkbox("🖼️ View and Download Uploaded Images"):
+    image_files = [f for f in os.listdir(SAVE_DIR) if f.lower().endswith(('.jpg', '.jpeg', '.png'))]
+    if image_files:
+        for img_file in image_files:
+            img_path = os.path.join(SAVE_DIR, img_file)
+            st.image(img_path, caption=img_file, use_column_width=True)
+            with open(img_path, "rb") as img:
+                st.download_button(
+                    label=f"⬇️ Download {img_file}",
+                    data=img,
+                    file_name=img_file,
+                    mime="image/jpeg" if img_file.lower().endswith('.jpg') else "image/png"
+                )
+    else:
+        st.warning("⚠️ No images found.")
+else:
+    if admin_email:
+        st.error("❌ Not an authorized admin.")
+
+if st.checkbox("📄 View Past Submissions"):
+    files = [f for f in os.listdir(SAVE_DIR) if f.endswith('.csv')]
+    if files:
+        all_data = pd.concat([pd.read_csv(os.path.join(SAVE_DIR, f)) for f in files], ignore_index=True)
+        st.dataframe(all_data)
+        csv = all_data.to_csv(index=False).encode('utf-8')
+        st.download_button(
+            label="⬇️ Download All Responses",
+            data=csv,
+            file_name='all_survey_responses.csv',
+            mime='text/csv',
+            key='public_csv_download'
+        )
+    else:
+        st.warning("⚠️ No submissions found yet.")
