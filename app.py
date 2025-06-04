@@ -92,7 +92,7 @@ labels = dict_translations.get(lang, dict_translations['English'])
 # Title
 st.title(labels['Farmer Profile'])
 
-# --- Heritage Specific Data ---
+# ---  Specific Data ---
 BMC_NAMES = ["Shree Ganesh Dudh sankalan kendra Sastewadi-5015","Jay Malhar Dudh sankalan kendra, Ghadgemala -5090","Bhairavnath Dudh Sankalan Kendra, Hingangaon-5112","Wageshwari Dudh sankalan va Shitkaran Kendra, Zanzane Saswad-5107","SAYALI DUDH MUNJAWADI-5124",
 "Govind Dudh Sankalan Kendra Zanzane Saswad -5450","HANUMAN DUDH BARAD	5115","SHIVSHANKAR DUDH BARAD	5302","Govind Shwetkranti Dudh sankalan kendra - Hol-0008","VAJUBAI DUDH VAJEGOAN	5493","DURGADEVI DUDH SONWADI	5590",
 "Gokul Dudh sankalan kendra - Mathachiwadi 	5145","JAY TULJABHAVANI DUDH GIRVI-5404","VIGHNAHARTA DUDH VIDNI	5142","MEGHRAJ DUDH GIRVI	5085","GOVIND MAHILA SHEWATH KRANTI-5435","Sampat Karche Dudh sankalan kendra Somanthali-5092",
@@ -118,11 +118,10 @@ PELLET_FEED_BRANDS = ["Heritage Milk Rich", "Heritage Milk Joy", "Heritage Power
 MINERAL_MIXTURE_BRANDS = ["Herita Vit", "Herita Min", "Other (Specify)"]
 WATER_SOURCE_OPTIONS = ["Panchayat", "Borewell", "Water Streams"]
 SURVEYOR_NAMES = ["Shiva Shankaraiah", "Reddisekhar", "Balakrishna", "Somasekhar", "Mahesh Kumar", "Dr Swaran Raj Nayak", "Ram Prasad", "K Balaji"]
-# -----------------------------
 # Form Start
 with st.form("survey_form"):
     st.header(labels['Farmer Profile'])
-    vlcc_name = st.selectbox(labels['BMC Name'], BMC_NAMES)
+    vlcc_name = st.selectbox(labels['VLCC Name'], VLCC_NAMES)
     hpc_code = st.text_input(labels['HPC/MCC Code'])
     types = st.selectbox(labels['Types'], (labels['HPC'], labels['MCC']))
     farmer_name = st.text_input(labels['Farmer Name'])
@@ -166,7 +165,7 @@ with st.form("survey_form"):
     st.subheader("Upload Farm Photo")
     farm_photo = st.file_uploader("Choose a farm photo (JPG/PNG)", type=["jpg", "jpeg", "png"], key="farm_photo_uploader")
 
-    st.form_submit_button()
+    submit = st.form_submit_button(labels['Submit'])
 
 # Process submission
 if submit:
