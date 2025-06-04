@@ -1,4 +1,22 @@
 import streamlit as st
+import pandas as pd
+import datetime
+import os
+
+# Ensure save folder exists
+SAVE_DIR = 'survey_responses'
+os.makedirs(SAVE_DIR, exist_ok=True)
+
+# Streamlit Page Config
+st.set_page_config(page_title="Heritage Dairy Survey", page_icon="🐄", layout="centered")
+
+# Language Selection
+lang = st.selectbox("Language / भाषा / భాష", ("English", "Hindi", "Telugu"))
+labels = dict_translations.get(lang, dict_translations['English'])
+
+# Title
+st.title(labels['Farmer Profile'])
+
 BASELINE_QUESTIONS = [
     # Farmer Profile Section
     {"label": {"English": "Types", "Hindi": "प्रकार", "Marathi": "प्रकार"}, "type": "text"},
