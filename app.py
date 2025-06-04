@@ -43,7 +43,7 @@ baseline_answers = {}
 
 # Render form UI
 st.header("📋 Baseline Survey Questions")
-for idx, q in enumerate(BASELINE_QUESTIONS):
+    for idx, q in enumerate(BASELINE_QUESTIONS):
     label = q['label'].get(lang, q['label']['English'])
     key = f"baseline_q_{idx}"
 
