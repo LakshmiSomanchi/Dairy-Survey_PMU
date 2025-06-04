@@ -92,7 +92,7 @@ labels = dict_translations.get(lang, dict_translations['English'])
 # Title
 st.title(labels['Farmer Profile'])
 
-# --- Heritage Specific Data ---
+# --- Specific Data ---
 BMC_NAMES = ["Shree Ganesh Dudh sankalan kendra Sastewadi-5015","Jay Malhar Dudh sankalan kendra, Ghadgemala -5090","Bhairavnath Dudh Sankalan Kendra, Hingangaon-5112","Wageshwari Dudh sankalan va Shitkaran Kendra, Zanzane Saswad-5107","SAYALI DUDH MUNJAWADI-5124",
 "Govind Dudh Sankalan Kendra Zanzane Saswad -5450","HANUMAN DUDH BARAD	5115","SHIVSHANKAR DUDH BARAD	5302","Govind Shwetkranti Dudh sankalan kendra - Hol-0008","VAJUBAI DUDH VAJEGOAN	5493","DURGADEVI DUDH SONWADI	5590",
 "Gokul Dudh sankalan kendra - Mathachiwadi 	5145","JAY TULJABHAVANI DUDH GIRVI-5404","VIGHNAHARTA DUDH VIDNI	5142","MEGHRAJ DUDH GIRVI	5085","GOVIND MAHILA SHEWATH KRANTI-5435","Sampat Karche Dudh sankalan kendra Somanthali-5092",
@@ -116,7 +116,7 @@ DRY_FODDER_OPTIONS = ["Paddy Straw", "Maize Straw", "Ragi Straw", "Ground Nut Cr
 PELLET_FEED_BRANDS = ["Heritage Milk Rich", "Heritage Milk Joy", "Heritage Power Plus", "Kamadhenu", "Godrej", "Sreeja", "Vallabha-Panchamruth", "Vallabha-Subham Pusti"]
 MINERAL_MIXTURE_BRANDS = ["Herita Vit", "Herita Min", "Other (Specify)"]
 WATER_SOURCE_OPTIONS = ["Panchayat", "Borewell", "Water Streams"]
-SURVEYOR_NAMES = ["Shiva Shankaraiah", "Reddisekhar", "Balakrishna", "Somasekhar", "Mahesh Kumar", "Dr Swaran Raj Nayak", "Ram Prasad", "K Balaji"]
+SURVEYOR_NAMES = ["Abhishek Gunna", "Meha Gururani", "Divyalakshmi Chatty", "Jyothika"]
 # -----------------------------
 # Form Start
 with st.form("survey_form"):
@@ -221,7 +221,7 @@ if submit:
     with st.expander("🔍 Click to Review Your Submission"):
         for section, keys in {
             "📄 Farmer Profile": [
-                'VLCC Name', 'HPC/MCC Code', 'Types', 'Farmer Name', 'Farmer Code', 'Gender'
+                'BMC Name', 'BMC/MCC Code', 'Types', 'Farmer Name', 'Farmer Code', 'Gender'
             ],
             "🐄 Farm Details": [
                 'Number of Cows', 'No. of Cattle in Milk', 'No. of Calves/Heifers',
