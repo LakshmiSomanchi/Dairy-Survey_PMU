@@ -239,7 +239,7 @@ dict_translations = {
         "Click to Review Baseline Responses": "बेसलाइन प्रतिसाद पाहण्यासाठी क्लिक करा",
         "Baseline Survey Questions": "बेसलाइन सर्वेक्षण प्रश्न",
         "Admin Real-Time Access": "प्रशासक रिअल-टाइम प्रवेश",
-        "Enter your Admin Email to unlock extra features:": "अतिरिक्त वैशिष्ट्ये अनलॉक करण्यासाठी आपला प्रशासक ईमेल प्रविष्ट करा:",
+        "Enter your Admin Email to unlock extra features:": "अतिरिक्त वैशिष्ट्ये अनलॉक करण्यासाठी आपला व्यवस्थापक ईमेल प्रविष्ट करा:",
         "Admin access granted! Real-time view enabled.": "प्रशासक प्रवेश मंजूर! रिअल-टाइम दृश्य सक्षम केले.",
         "Not an authorized admin.": "अधिकृत प्रशासक नाही.",
         "View and Download Uploaded Images": "अपलोड केलेल्या प्रतिमा पहा आणि डाउनलोड करा",
@@ -296,7 +296,7 @@ data = {
         'PUNE', 'PUNE', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA',
         'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SOLAPUR', 'SOLAPUR', 'PUNE',
         'PUNE', 'SOLAPUR', 'SOLAPUR', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'PUNE',
-        'SATARA', 'SATARA', 'PUNE', '', '' # These two empty strings make the District list 65 elements long
+        'SATARA', 'SATARA', 'PUNE', '', ''
     ]
 }
 
@@ -310,14 +310,12 @@ for key, value in data.items():
 
 for key, value in data.items():
     if isinstance(value, list) and len(value) < max_len:
-        # Pad with None for numerical columns, or empty string for text columns
-        # For simplicity, padding with empty string here. Adjust if specific types are critical.
+        # Pad with empty string for consistency, as most values are text.
+        # If any column is strictly numeric, consider padding with 0 or None.
         data[key].extend([''] * (max_len - len(value)))
     elif not isinstance(value, list):
-        # If a value is not a list (e.g., a single value), convert it to a list
-        # and then pad if necessary. This handles cases like 'Approved Status' if not already a list.
-        # In your case, 'Approved Status' is already a list, so this might not be strictly needed,
-        # but it adds robustness.
+        # This case is less likely with the current data structure,
+        # but handles if a value was a single non-list item by mistake.
         data[key] = [value] * max_len
 
 
@@ -326,7 +324,6 @@ df_locations = pd.DataFrame(data)
 # Extract unique options for dropdowns
 bmc_mcc_names = sorted(df_locations['BMC Name'].unique().tolist())
 villages = sorted(df_locations['VILLAGE'].unique().tolist())
-# 'tehsils' list is no longer derived from df_locations as 'Tehsil' column is removed.
 districts = sorted(df_locations['District'].unique().tolist())
 
 
@@ -344,9 +341,7 @@ BASELINE_QUESTIONS = [
     {"label": {"English": "BMC/MCC Name", "Hindi": "बीएमसी/एमसीसी नाम", "Marathi": "बीएमसी/एमसीसी नाव"}, "type": "select", "options": bmc_mcc_names},
     {"label": {"English": "BMC/MCC Code", "Hindi": "बीएमसी/एमसीसी कोड", "Marathi": "बीएमसी/एमसीसी कोड"}, "type": "text"},
     {"label": {"English": "District", "Hindi": "जिला", "Marathi": "जिल्हा"}, "type": "select", "options": districts},
-    # Taluka is now a text input since it's not derived from df_locations.
-    # If you have a static list of Talukas, you could replace "text" with "select" and provide "options".
-    {"label": {"English": "Taluka", "Hindi": "तालुका", "Marathi": "तालुका"}, "type": "text"},
+    {"label": {"English": "Taluka", "Hindi": "तालुका", "Marathi": "तालुका"}, "type": "text"}, # Now a text input
     {"label": {"English": "Village", "Hindi": "गांव", "Marathi": "गाव"}, "type": "select", "options": villages},
     {"label": {"English": "BCF Name", "Hindi": "बीसीएफ का नाम", "Marathi": "बीसीएफचे नाव"}, "type": "text"},
     {"label": {"English": "Energy sources", "Hindi": "ऊर्जा स्रोत", "Marathi": "ऊर्जेचे स्रोत"}, "type": "multiselect", "options": ["Solar", "Main electricity", "Both", "Generator"]},
@@ -420,82 +415,81 @@ baseline_answers = st.session_state.baseline_answers
 previous_answers = {}
 
 for idx, q in enumerate(BASELINE_QUESTIONS):
-    # Update previous_answers with the current state of answers from session_state
-    # This is crucial for dependencies to work correctly on subsequent reruns.
-    previous_answers[q['label']['English']] = baseline_answers.get(q['label']['English'])
+    # Only try to update previous_answers if the dictionary item 'q' has a 'label' key
+    if "label" in q:
+        previous_answers[q['label']['English']] = baseline_answers.get(q['label']['English'])
 
     if "section" in q:
         st.subheader(labels[q["section"]])
         continue
 
-    display_question = True
-    if "depends_on" in q:
-        dependency_key_english = list(q["depends_on"].keys())[0]
-        expected_value = q["depends_on"][dependency_key_english]
+    # Proceed only if the question has a 'label' (i.e., it's a real input field)
+    if "label" in q:
+        display_question = True
+        if "depends_on" in q:
+            dependency_key_english = list(q["depends_on"].keys())[0]
+            expected_value = q["depends_on"][dependency_key_english]
 
-        # Get the value of the parent question from the current baseline_answers
-        dependent_q_value = baseline_answers.get(dependency_key_english)
+            # Get the value of the parent question from the current baseline_answers
+            dependent_q_value = baseline_answers.get(dependency_key_english)
 
-        if dependent_q_value is not None:
-            if isinstance(dependent_q_value, list): # Multi-select dependency
-                if expected_value not in dependent_q_value:
-                    display_question = False
-            else: # Single select, text, number dependency
-                if dependent_q_value != expected_value:
-                    display_question = False
-        else:
-            display_question = False
-
-    label = q['label'].get(lang, q['label']['English'])
-    key = f"baseline_q_{idx}_{lang}"
-
-    if display_question:
-        # Retrieve current value from baseline_answers for sticky inputs
-        current_val_for_widget = baseline_answers.get(q['label']['English'])
-
-        if q['type'] == 'text':
-            baseline_answers[q['label']['English']] = st.text_input(label, value=current_val_for_widget if current_val_for_widget is not None else "", key=key)
-        elif q['type'] == 'number':
-            baseline_answers[q['label']['English']] = st.number_input(label, min_value=0.0, value=current_val_for_widget if current_val_for_widget is not None else 0.0, key=key)
-        elif q['type'] == 'select':
-            default_index = 0
-            if q['options']:
-                if current_val_for_widget in q['options']:
-                    default_index = q['options'].index(current_val_for_widget)
-                elif current_val_for_widget is None and "" in q['options']: # Check for blank string default if needed
-                    default_index = q['options'].index("")
-                elif current_val_for_widget is None: # If no value yet, and options exist, pick first
-                    default_index = 0
-            else: # No options, default to None (or handle error)
-                baseline_answers[q['label']['English']] = None
-                continue # Skip widget rendering
-            baseline_answers[q['label']['English']] = st.selectbox(label, q['options'], index=default_index, key=key)
-        elif q['type'] == 'multiselect':
-            baseline_answers[q['label']['English']] = st.multiselect(label, q['options'], default=current_val_for_widget if current_val_for_widget is not None else [], key=key)
-        elif q['type'] == 'date':
-            baseline_answers[q['label']['English']] = st.date_input(label, value=current_val_for_widget if current_val_for_widget is not None else datetime.date.today(), key=key)
-        elif q['type'] == 'camera_input':
-            uploaded_image = st.camera_input(label, key=key)
-            if uploaded_image is not None:
-                # Save the image
-                timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-                image_filename = f"photo_{timestamp}.jpg"
-                image_path = os.path.join(IMAGE_SAVE_DIR, image_filename)
-                with open(image_path, "wb") as f:
-                    f.write(uploaded_image.getbuffer())
-                baseline_answers[q['label']['English']] = image_filename # Store filename in answers
-                st.session_state.uploaded_image_filename = image_filename # Store for immediate display/download
+            if dependent_q_value is not None:
+                if isinstance(dependent_q_value, list): # Multi-select dependency
+                    if expected_value not in dependent_q_value:
+                        display_question = False
+                else: # Single select, text, number dependency
+                    if dependent_q_value != expected_value:
+                        display_question = False
             else:
-                baseline_answers[q['label']['English']] = None # Clear if no image
-                st.session_state.uploaded_image_filename = None
+                display_question = False
 
-    else:
-        # If the question is not displayed, ensure its value is removed from answers
-        if q['label']['English'] in baseline_answers:
-            del baseline_answers[q['label']['English']]
-            # Also reset the widget state if it was a camera_input
-            if q['type'] == 'camera_input':
-                st.session_state.uploaded_image_filename = None # Clear image preview
+        label = q['label'].get(lang, q['label']['English'])
+        key = f"baseline_q_{idx}_{lang}"
+
+        if display_question:
+            # Retrieve current value from baseline_answers for sticky inputs
+            current_val_for_widget = baseline_answers.get(q['label']['English'])
+
+            if q['type'] == 'text':
+                baseline_answers[q['label']['English']] = st.text_input(label, value=current_val_for_widget if current_val_for_widget is not None else "", key=key)
+            elif q['type'] == 'number':
+                baseline_answers[q['label']['English']] = st.number_input(label, min_value=0.0, value=current_val_for_widget if current_val_for_widget is not None else 0.0, key=key)
+            elif q['type'] == 'select':
+                default_index = 0
+                if q['options']:
+                    if current_val_for_widget in q['options']:
+                        default_index = q['options'].index(current_val_for_widget)
+                    elif current_val_for_widget is None and "" in q['options']:
+                        default_index = q['options'].index("")
+                    elif current_val_for_widget is None:
+                        default_index = 0
+                else:
+                    baseline_answers[q['label']['English']] = None
+                    continue
+                baseline_answers[q['label']['English']] = st.selectbox(label, q['options'], index=default_index, key=key)
+            elif q['type'] == 'multiselect':
+                baseline_answers[q['label']['English']] = st.multiselect(label, q['options'], default=current_val_for_widget if current_val_for_widget is not None else [], key=key)
+            elif q['type'] == 'date':
+                baseline_answers[q['label']['English']] = st.date_input(label, value=current_val_for_widget if current_val_for_widget is not None else datetime.date.today(), key=key)
+            elif q['type'] == 'camera_input':
+                uploaded_image = st.camera_input(label, key=key)
+                if uploaded_image is not None:
+                    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+                    image_filename = f"photo_{timestamp}.jpg"
+                    image_path = os.path.join(IMAGE_SAVE_DIR, image_filename)
+                    with open(image_path, "wb") as f:
+                        f.write(uploaded_image.getbuffer())
+                    baseline_answers[q['label']['English']] = image_filename
+                    st.session_state.uploaded_image_filename = image_filename
+                else:
+                    baseline_answers[q['label']['English']] = None
+                    st.session_state.uploaded_image_filename = None
+
+        else:
+            if q['label']['English'] in baseline_answers:
+                del baseline_answers[q['label']['English']]
+                if q['type'] == 'camera_input':
+                    st.session_state.uploaded_image_filename = None
 
 
 # --- Survey Submission ---
@@ -507,10 +501,9 @@ if st.button(labels["Submit Survey"]):
         df = pd.DataFrame([data_to_save])
         df.to_csv(file_name, index=False)
         st.success(labels["Survey Saved!"])
-        # Optionally clear the form after submission
         st.session_state.baseline_answers = {}
-        st.session_state.uploaded_image_filename = None # Clear image after submission
-        st.experimental_rerun() # Rerun to clear the form visually
+        st.session_state.uploaded_image_filename = None
+        st.experimental_rerun()
     except Exception as e:
         st.error(f"{labels['Error saving survey']}: {e}")
 
