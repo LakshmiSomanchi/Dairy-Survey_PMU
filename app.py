@@ -44,8 +44,8 @@ baseline_answers = {}
 # Render form UI
 st.header("📋 Baseline Survey Questions")
 for idx, q in enumerate(BASELINE_QUESTIONS):
-   label = q['label'].get(lang, q['label']['English'])
-   key = f"baseline_q_{idx}"
+    label = q['label'].get(lang, q['label']['English'])
+    key = f"baseline_q_{idx}"
 
 if q['type'] == 'text':
     baseline_answers[label] = st.text_input(label, key=key)
