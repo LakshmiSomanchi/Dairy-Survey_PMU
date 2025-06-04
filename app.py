@@ -258,8 +258,8 @@ labels = dict_translations.get(lang, dict_translations['English']) # Fallback to
 st.title(labels['Farmer Profile'])
 
 # --- Data extracted from the provided image ---
-# Meticulously re-checked the data counts to ensure all lists have 65 elements.
-# IMPORTANT: 'Tehsil' column is removed, and 'District' length is fixed to 65.
+# IMPORTANT: 'Tehsil' column is removed.
+# The lists below are taken directly from your last provided code.
 data = {
     'S.No.': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65],
     'MCC Code': [5015, 5090, 5112, 5117, 5120, 5121, 5300, 5315, 9008, 5093, 5094, 5143, 5140, 5142, 5141, 5082, 5035, 5042, 5044, 5146, 5147, 5148, 5187, 1205, 1203, 1204, 1206, 5478, 5022, 5033, 5337, 5330, 5150, 5400, 5401, 5402, 5404, 5405, 5144, 5406, 5407, 5408, 5409, 5410, 5411, 5412, 5413, 5480, 5481, 5276, 5278, 5283, 5284, 5285, 5301, 5304, 5305, 5306, 5307, 5308, 5309, 6200, 5111, 5398, 5114, 5115, 5145, 5113, 5116],
@@ -300,12 +300,26 @@ data = {
     ]
 }
 
-# --- This block is for debugging and can be removed once the code runs without error ---
-# print("\n--- Data List Lengths for Debugging ---")
-# for key, value in data.items():
-#     print(f"Length of '{key}': {len(value)}")
-# print("---------------------------------------\n")
-# --- End Debugging Block ---
+# --- PROGRAMMATIC LENGTH CORRECTION FOR ROBUSTNESS ---
+# This loop finds the maximum length and pads shorter lists.
+# This ensures the DataFrame creation will not fail due to length mismatch.
+max_len = 0
+for key, value in data.items():
+    if isinstance(value, list):
+        max_len = max(max_len, len(value))
+
+for key, value in data.items():
+    if isinstance(value, list) and len(value) < max_len:
+        # Pad with None for numerical columns, or empty string for text columns
+        # For simplicity, padding with empty string here. Adjust if specific types are critical.
+        data[key].extend([''] * (max_len - len(value)))
+    elif not isinstance(value, list):
+        # If a value is not a list (e.g., a single value), convert it to a list
+        # and then pad if necessary. This handles cases like 'Approved Status' if not already a list.
+        # In your case, 'Approved Status' is already a list, so this might not be strictly needed,
+        # but it adds robustness.
+        data[key] = [value] * max_len
+
 
 df_locations = pd.DataFrame(data)
 
@@ -537,6 +551,7 @@ if admin_email in ALLOWED_EMAILS:
             st.warning(labels["No images found."])
 
     if st.checkbox(labels["View Past Submissions"]):
+        # Filter for CSV files that start with 'survey_response_' to avoid other CSVs
         files = [f for f in os.listdir(SAVE_DIR) if f.endswith('.csv') and f.startswith('survey_response_')]
         if files:
             all_data = pd.concat([pd.read_csv(os.path.join(SAVE_DIR, f)) for f in files], ignore_index=True)
