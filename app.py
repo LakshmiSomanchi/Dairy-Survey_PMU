@@ -43,18 +43,18 @@ baseline_answers = {}
 
 # Render form UI
 st.header("📋 Baseline Survey Questions")
-  for idx, q in enumerate(BASELINE_QUESTIONS):
-    label = q['label'].get(lang, q['label']['English'])
-    key = f"baseline_q_{idx}"
+for idx, q in enumerate(BASELINE_QUESTIONS):
+   label = q['label'].get(lang, q['label']['English'])
+   key = f"baseline_q_{idx}"
 
-    if q['type'] == 'text':
-        baseline_answers[label] = st.text_input(label, key=key)
-    elif q['type'] == 'number':
-        baseline_answers[label] = st.number_input(label, min_value=0.0, key=key)
-    elif q['type'] == 'select':
-        baseline_answers[label] = st.selectbox(label, q['options'], key=key)
-    elif q['type'] == 'multiselect':
-        baseline_answers[label] = st.multiselect(label, q['options'], key=key)
+if q['type'] == 'text':
+    baseline_answers[label] = st.text_input(label, key=key)
+elif q['type'] == 'number':
+    baseline_answers[label] = st.number_input(label, min_value=0.0, key=key)
+elif q['type'] == 'select':
+    baseline_answers[label] = st.selectbox(label, q['options'], key=key)
+elif q['type'] == 'multiselect':
+    baseline_answers[label] = st.multiselect(label, q['options'], key=key)
 
 # Display responses in summary (to integrate into app.py)
 if 'data' in globals():
