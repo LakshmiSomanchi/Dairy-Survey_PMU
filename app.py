@@ -1,4 +1,4 @@
-# app.py (Heritage Specific Streamlit Dairy Survey)
+# app.py (Dairy Survey)
 
 import streamlit as st
 import pandas as pd
@@ -83,7 +83,7 @@ dict_translations = {
 }
 
 # Streamlit Page Config
-st.set_page_config(page_title="Heritage Dairy Survey", page_icon="🐄", layout="centered")
+st.set_page_config(page_title="ks2 Dairy Survey", page_icon="🐄", layout="centered")
 
 # Language Selection
 lang = st.selectbox("Language / भाषा / భాష", ("English", "Hindi", "Telugu"))
@@ -121,9 +121,9 @@ SURVEYOR_NAMES = ["Shiva Shankaraiah", "Reddisekhar", "Balakrishna", "Somasekhar
 # Form Start
 with st.form("survey_form"):
     st.header(labels['Farmer Profile'])
-    vlcc_name = st.selectbox(labels['VLCC Name'], VLCC_NAMES)
-    hpc_code = st.text_input(labels['HPC/MCC Code'])
-    types = st.selectbox(labels['Types'], (labels['HPC'], labels['MCC']))
+    bmc_name = st.selectbox(labels['BMC Name'], BMC_NAMES)
+    bmc_code = st.text_input(labels['BMC/MCC Code'])
+    types = st.selectbox(labels['Types'], (labels['BMC'], labels['MCC']))
     farmer_name = st.text_input(labels['Farmer Name'])
     farmer_code = st.text_input(labels['Farmer Code'])
     gender = st.selectbox(labels['Gender'], (labels['Male'], labels['Female']))
