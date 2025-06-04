@@ -295,10 +295,8 @@ data = {
         'DAUND', 'DAUND', 'WAI', 'WAI', 'WAI', 'KOREGAON', 'KOREGAON', 'KOREGAON', 'KOREGAON', 'MAN', 'MAN', 'MAN',
         'MAN', 'KOREGAON', 'KOREGAON', 'KHANDALA', 'KHANDALA', 'MALSHIRAS', 'MALSHIRAS', 'INDAPUR', 'INDAPUR', 'SHRIRAS',
         'SHRIRAS', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'DAUND', 'PHALTAN', 'PHALTAN',
-        'BARAMATI'
+        'BARAMATI', 'UNKNOWN_TEHSIL_1', 'UNKNOWN_TEHSIL_2' # Added two placeholder values to reach 65
     ],
-    # Placeholder for 'District' if it's different from 'Tehsil'.
-    # For now, it mirrors Tehsil as per your original code.
     'District': [
         'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA',
         'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'PUNE', 'PUNE', 'PUNE', 'PUNE', 'PUNE',
@@ -306,7 +304,7 @@ data = {
         'PUNE', 'PUNE', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA',
         'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SOLAPUR', 'SOLAPUR', 'PUNE',
         'PUNE', 'SOLAPUR', 'SOLAPUR', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'PUNE',
-        'SATARA', 'SATARA', 'PUNE'
+        'SATARA', 'SATARA', 'PUNE', 'UNKNOWN_DISTRICT_1', 'UNKNOWN_DISTRICT_2' # Added two placeholder values to reach 65
     ]
 }
 df_locations = pd.DataFrame(data)
