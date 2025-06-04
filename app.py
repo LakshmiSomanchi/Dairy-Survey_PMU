@@ -21,7 +21,7 @@ dict_translations = {
         "BMC/MCC Name": "BMC/MCC Name",
         "BMC/MCC Code": "BMC/MCC Code",
         "District": "District",
-        "Taluka": "Taluka",
+        "Taluka": "Taluka", # Keep in translations for questions, even if not in df_locations
         "Village": "Village",
         "BCF Name": "BCF Name",
         "Energy sources": "Energy sources",
@@ -42,7 +42,7 @@ dict_translations = {
         "Milk Production in litres per day-Desi cows": "Milk Production in litres per day-Desi cows",
         "No. of Cross breed cows": "No. of Cross breed cows",
         "Type of cross breed(HF/Jersey)": "Type of cross breed (HF/Jersey)",
-        "Milk Production in litres per day-Cross breed(HF/Jersey)": "Milk Production in litres per day-Cross breed (HF/Jersey)", # Fixed typo
+        "Milk Production in litres per day-Cross breed(HF/Jersey)": "Milk Production in litres per day-Cross breed (HF/Jersey)",
         "No. of Buffalo": "No. of Buffalo",
         "Milk Production in liters per day-buffalo": "Milk Production in liters per day-buffalo",
         "Specific Questions": "Specific Questions",
@@ -54,7 +54,7 @@ dict_translations = {
         "Quantity of Dry Fodder per day (in Kgs)": "Quantity of Dry Fodder per day (in Kgs)",
         "Concentrate Feed": "Concentrate Feed",
         "If yes, which brand": "If yes, which brand",
-        "Quantity of Concentrate Feed per day (in Kgs)": "Quantity of Concentrate Feed per day (in Kgs)", # Fixed space
+        "Quantity of Concentrate Feed per day (in Kgs)": "Quantity of Concentrate Feed per day (in Kgs)",
         "Mineral Mixture": "Mineral Mixture",
         "If yes, which brand_mineral": "If yes, which brand",
         "Quantity of Mineral Mixture per day (in gms)": "Quantity of Mineral Mixture per day (in gms)",
@@ -120,7 +120,7 @@ dict_translations = {
         "Milk Production in litres per day-Desi cows": "देसी गायों द्वारा प्रतिदिन दूध उत्पादन (लीटर में)",
         "No. of Cross breed cows": "क्रॉसब्रीड गायों की संख्या",
         "Type of cross breed(HF/Jersey)": "क्रॉसब्रीड प्रकार (HF/जर्सी)",
-        "Milk Production in litres per day-Cross breed(HF/Jersey)": "क्रॉसब्रीड गायों द्वारा प्रतिदिन दूध उत्पादन (HF/जर्सी)", # Fixed typo
+        "Milk Production in litres per day-Cross breed(HF/Jersey)": "क्रॉसब्रीड गायों द्वारा प्रतिदिन दूध उत्पादन (HF/जर्सी)",
         "No. of Buffalo": "भैंसों की संख्या",
         "Milk Production in liters per day-buffalo": "भैंसों द्वारा प्रतिदिन दूध उत्पादन (लीटर में)",
         "Specific Questions": "विशिष्ट प्रश्न",
@@ -132,7 +132,7 @@ dict_translations = {
         "Quantity of Dry Fodder per day (in Kgs)": "प्रतिदिन सूखे चारे की मात्रा (किलो में)",
         "Concentrate Feed": "सांद्रित चारा",
         "If yes, which brand": "यदि हाँ, तो कौन सा ब्रांड",
-        "Quantity of Concentrate Feed per day (in Kgs)": "प्रतिदिन सांद्रित चारे की मात्रा (किलो में)", # Fixed space
+        "Quantity of Concentrate Feed per day (in Kgs)": "प्रतिदिन सांद्रित चारे की मात्रा (किलो में)",
         "Mineral Mixture": "खनिज मिश्रण",
         "If yes, which brand_mineral": "यदि हाँ, तो कौन सा ब्रांड",
         "Quantity of Mineral Mixture per day (in gms)": "प्रतिदिन खनिज मिश्रण की मात्रा (ग्राम में)",
@@ -177,7 +177,7 @@ dict_translations = {
         "BMC/MCC Name": "बीएमसी/एमसीसी नाव",
         "BMC/MCC Code": "बीएमसी/एमसीसी कोड",
         "District": "जिल्हा",
-        "Taluka": "तालुका",
+        "Taluka": "तालुका", # Keep in translations for questions, even if not in df_locations
         "Village": "गाव",
         "BCF Name": "बीसीएफचे नाव",
         "Energy sources": "ऊर्जेचे स्रोत",
@@ -198,7 +198,7 @@ dict_translations = {
         "Milk Production in litres per day-Desi cows": "देशी गायींकडून दररोज दूध उत्पादन (लिटर मध्ये)",
         "No. of Cross breed cows": "क्रॉसब्रीड गायांची संख्या",
         "Type of cross breed(HF/Jersey)": "क्रॉसब्रीड प्रकार (HF/जर्सी)",
-        "Milk Production in litres per day-Cross breed(HF/Jersey)": "क्रॉसब्रीड गायींकडून दररोज दूध उत्पादन (HF/जर्सी)", # Fixed typo
+        "Milk Production in litres per day-Cross breed(HF/Jersey)": "क्रॉसब्रीड गायींकडून दररोज दूध उत्पादन (HF/जर्सी)",
         "No. of Buffalo": "म्हशींची संख्या",
         "Milk Production in liters per day-buffalo": "म्हशींकडून दररोज दूध उत्पादन (लिटर मध्ये)",
         "Specific Questions": "विशिष्ट प्रश्न",
@@ -210,7 +210,7 @@ dict_translations = {
         "Quantity of Dry Fodder per day (in Kgs)": "दररोज सुक्या चाऱ्याचे प्रमाण (किलोमध्ये)",
         "Concentrate Feed": "केंद्रित चारा",
         "If yes, which brand": "होय असल्यास, कोणता ब्रँड",
-        "Quantity of Concentrate Feed per day (in Kgs)": "दररोज केंद्रित चाऱ्याचे प्रमाण (किलोमध्ये)", # Fixed space
+        "Quantity of Concentrate Feed per day (in Kgs)": "दररोज केंद्रित चाऱ्याचे प्रमाण (किलोमध्ये)",
         "Mineral Mixture": "खनिज मिश्रण",
         "If yes, which brand_mineral": "होय असल्यास, कोणता ब्रँड",
         "Quantity of Mineral Mixture per day (in gms)": "दररोज खनिज मिश्रणाचे प्रमाण (ग्राम मध्ये)",
@@ -259,6 +259,7 @@ st.title(labels['Farmer Profile'])
 
 # --- Data extracted from the provided image ---
 # Meticulously re-checked the data counts to ensure all lists have 65 elements.
+# IMPORTANT: This data dictionary has been updated to remove 'Tehsil' and ensure 'District' length.
 data = {
     'S.No.': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65],
     'MCC Code': [5015, 5090, 5112, 5117, 5120, 5121, 5300, 5315, 9008, 5093, 5094, 5143, 5140, 5142, 5141, 5082, 5035, 5042, 5044, 5146, 5147, 5148, 5187, 1205, 1203, 1204, 1206, 5478, 5022, 5033, 5337, 5330, 5150, 5400, 5401, 5402, 5404, 5405, 5144, 5406, 5407, 5408, 5409, 5410, 5411, 5412, 5413, 5480, 5481, 5276, 5278, 5283, 5284, 5285, 5301, 5304, 5305, 5306, 5307, 5308, 5309, 6200, 5111, 5398, 5114, 5115, 5145, 5113, 5116],
@@ -288,15 +289,7 @@ data = {
         'SHRINATH ROKADESHWAR DALWADI BMC', 'Ittehad Dudh Sankalan Kendra, HNTI', 'JANAI DUDH SANKALAN KENDRA MIRDE',
         'Sant BhagwanbabaDudh Sankalan Kendra - Akole', 'JAGDAMBA DUDH SOMANTHALI', 'Shrinath Mhasoba Dudh Sankalan Karanje'
     ],
-    'Tehsil': [
-        'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN',
-        'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'BARAMATI', 'BARAMATI', 'BARAMATI', 'BARAMATI', 'BARAMATI',
-        'BARAMATI', 'BARAMATI', 'BARAMATI', 'MALSHIRAS', 'MALSHIRAS', 'MALSHIRAS', 'MALSHIRAS', 'MAN', 'DAUND', 'DAUND',
-        'DAUND', 'DAUND', 'WAI', 'WAI', 'WAI', 'KOREGAON', 'KOREGAON', 'KOREGAON', 'KOREGAON', 'MAN', 'MAN', 'MAN',
-        'MAN', 'KOREGAON', 'KOREGAON', 'KHANDALA', 'KHANDALA', 'MALSHIRAS', 'MALSHIRAS', 'INDAPUR', 'INDAPUR', 'SHRIRAS',
-        'SHRIRAS', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'PHALTAN', 'DAUND', 'PHALTAN', 'PHALTAN',
-        'BARAMATI', 'UNKNOWN_TEHSIL_1', 'UNKNOWN_TEHSIL_2' # Added two placeholder values to reach 65
-    ],
+    # Removed 'Tehsil' key as requested.
     'District': [
         'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA',
         'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'PUNE', 'PUNE', 'PUNE', 'PUNE', 'PUNE',
@@ -304,17 +297,22 @@ data = {
         'PUNE', 'PUNE', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA',
         'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SOLAPUR', 'SOLAPUR', 'PUNE',
         'PUNE', 'SOLAPUR', 'SOLAPUR', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'SATARA', 'PUNE',
-        'SATARA', 'SATARA', 'PUNE', 'UNKNOWN_DISTRICT_1', 'UNKNOWN_DISTRICT_2' # Added two placeholder values to reach 65
+        'SATARA', 'SATARA', 'PUNE', '', '' # Added two blank strings to make it 65 elements long
     ]
 }
-df_locations = pd.DataFrame(data)
 
+# --- For verification (you can remove these lines after confirming it works) ---
+# for key, value in data.items():
+#     print(f"Length of '{key}': {len(value)}")
+# -----------------------------------------------------------------------------
+
+df_locations = pd.DataFrame(data)
 
 # Extract unique options for dropdowns
 bmc_mcc_names = sorted(df_locations['BMC Name'].unique().tolist())
 villages = sorted(df_locations['VILLAGE'].unique().tolist())
-tehsils = sorted(df_locations['Tehsil'].unique().tolist())
-districts = sorted(df_locations['District'].unique().tolist()) # Now using a proper 'District' column
+# Removed tehsils from here as it's no longer in df_locations
+districts = sorted(df_locations['District'].unique().tolist())
 
 # Initialize session state for baseline answers if not already present
 if 'baseline_answers' not in st.session_state:
@@ -324,13 +322,19 @@ if 'uploaded_image_filename' not in st.session_state:
 
 
 # --- Updated BASELINE_QUESTIONS with specific options for Preventive Healthcare, Ethno Veterinary, and Banking Services ---
+# IMPORTANT: Updated the 'Taluka' question options since 'Tehsil' is removed from df_locations
 BASELINE_QUESTIONS = [
     # Farmer Profile Section
     {"label": {"English": "Types", "Hindi": "प्रकार", "Marathi": "प्रकार"}, "type": "text"},
     {"label": {"English": "BMC/MCC Name", "Hindi": "बीएमसी/एमसीसी नाम", "Marathi": "बीएमसी/एमसीसी नाव"}, "type": "select", "options": bmc_mcc_names},
     {"label": {"English": "BMC/MCC Code", "Hindi": "बीएमसी/एमसीसी कोड", "Marathi": "बीएमसी/एमसीसी कोड"}, "type": "text"},
     {"label": {"English": "District", "Hindi": "जिला", "Marathi": "जिल्हा"}, "type": "select", "options": districts},
-    {"label": {"English": "Taluka", "Hindi": "तालुका", "Marathi": "तालुका"}, "type": "select", "options": tehsils},
+    # The 'Taluka' question remains, but its options might need to be hardcoded or derived differently
+    # if you no longer have 'Tehsil' data in df_locations. For now, I'll make it a text input or
+    # provide a generic list if you don't have a specific source for talukas.
+    {"label": {"English": "Taluka", "Hindi": "तालुका", "Marathi": "तालुका"}, "type": "text"}, # Changed to text input as Tehsil is removed
+    # If you still need a list of talukas, you'd need to define them separately, e.g.:
+    # {"label": {"English": "Taluka", "Hindi": "तालुका", "Marathi": "तालुका"}, "type": "select", "options": ["Taluka A", "Taluka B", "Taluka C"]},
     {"label": {"English": "Village", "Hindi": "गांव", "Marathi": "गाव"}, "type": "select", "options": villages},
     {"label": {"English": "BCF Name", "Hindi": "बीसीएफ का नाम", "Marathi": "बीसीएफचे नाव"}, "type": "text"},
     {"label": {"English": "Energy sources", "Hindi": "ऊर्जा स्रोत", "Marathi": "ऊर्जेचे स्रोत"}, "type": "multiselect", "options": ["Solar", "Main electricity", "Both", "Generator"]},
@@ -390,7 +394,7 @@ BASELINE_QUESTIONS = [
     # Final Fields
     {"section": "Survey Details"},
     {"label": {"English": "Name of Surveyor", "Hindi": "सर्वेक्षक का नाम", "Marathi": "सर्वेक्षकाचे नाव"}, "type": "text"},
-    {"label": {"English": "Photo / Timestamp", "Hindi": "फोटो / टाइमस्टैम्प", "Marathi": "फोटो / वेळ"}, "type": "camera_input"}, # Changed to camera_input
+    {"label": {"English": "Photo / Timestamp", "Hindi": "फोटो / टाइमस्टैम्प", "Marathi": "फोटो / वेळ"}, "type": "camera_input"},
     {"label": {"English": "Date of Visit", "Hindi": "यात्रा की तारीख", "Marathi": "भेटीची तारीख"}, "type": "date"},
 ]
 
@@ -446,13 +450,15 @@ for idx, q in enumerate(BASELINE_QUESTIONS):
             if q['options']:
                 if current_val_for_widget in q['options']:
                     default_index = q['options'].index(current_val_for_widget)
-                elif current_val_for_widget is None and "None" in q['options']: # If no value, try to default to "None" if available
+                elif current_val_for_widget is None and "None" in q['options']:
                     default_index = q['options'].index("None")
-                elif current_val_for_widget is None: # If no value yet, and options exist, pick first
+                elif current_val_for_widget is None and "" in q['options']: # Check for blank string default if needed
+                    default_index = q['options'].index("")
+                elif current_val_for_widget is None:
                     default_index = 0
-            else: # No options, default to None (or handle error)
+            else:
                 baseline_answers[q['label']['English']] = None
-                continue # Skip widget rendering
+                continue
             baseline_answers[q['label']['English']] = st.selectbox(label, q['options'], index=default_index, key=key)
         elif q['type'] == 'multiselect':
             baseline_answers[q['label']['English']] = st.multiselect(label, q['options'], default=current_val_for_widget if current_val_for_widget is not None else [], key=key)
@@ -461,25 +467,22 @@ for idx, q in enumerate(BASELINE_QUESTIONS):
         elif q['type'] == 'camera_input':
             uploaded_image = st.camera_input(label, key=key)
             if uploaded_image is not None:
-                # Save the image
                 timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
                 image_filename = f"photo_{timestamp}.jpg"
                 image_path = os.path.join(IMAGE_SAVE_DIR, image_filename)
                 with open(image_path, "wb") as f:
                     f.write(uploaded_image.getbuffer())
-                baseline_answers[q['label']['English']] = image_filename # Store filename in answers
-                st.session_state.uploaded_image_filename = image_filename # Store for immediate display/download
+                baseline_answers[q['label']['English']] = image_filename
+                st.session_state.uploaded_image_filename = image_filename
             else:
-                baseline_answers[q['label']['English']] = None # Clear if no image
+                baseline_answers[q['label']['English']] = None
                 st.session_state.uploaded_image_filename = None
 
     else:
-        # If the question is not displayed, ensure its value is removed from answers
         if q['label']['English'] in baseline_answers:
             del baseline_answers[q['label']['English']]
-            # Also reset the widget state if it was a camera_input
             if q['type'] == 'camera_input':
-                st.session_state.uploaded_image_filename = None # Clear image preview
+                st.session_state.uploaded_image_filename = None
 
 # --- Survey Submission ---
 if st.button(labels["Submit Survey"]):
@@ -490,10 +493,9 @@ if st.button(labels["Submit Survey"]):
         df = pd.DataFrame([data_to_save])
         df.to_csv(file_name, index=False)
         st.success(labels["Survey Saved!"])
-        # Optionally clear the form after submission
         st.session_state.baseline_answers = {}
-        st.session_state.uploaded_image_filename = None # Clear image after submission
-        st.experimental_rerun() # Rerun to clear the form visually
+        st.session_state.uploaded_image_filename = None
+        st.experimental_rerun()
     except Exception as e:
         st.error(f"{labels['Error saving survey']}: {e}")
 
@@ -535,10 +537,11 @@ if admin_email in ALLOWED_EMAILS:
 
     if st.checkbox(labels["View Past Submissions"]):
         files = [f for f in os.listdir(SAVE_DIR) if f.endswith('.csv')]
-        # Filter out image directory if it's considered a file
-        files = [f for f in files if f != 'images']
-
-        if files:
+        files = [f for f in files if not f.startswith('survey_response_') and f.endswith('.csv')] # Filter out survey responses
+        # Check if files list is empty after filtering
+        if not files:
+            st.warning("No CSV files found for past submissions.")
+        else:
             all_data = pd.concat([pd.read_csv(os.path.join(SAVE_DIR, f)) for f in files], ignore_index=True)
             st.dataframe(all_data)
             csv = all_data.to_csv(index=False).encode('utf-8')
@@ -552,5 +555,5 @@ if admin_email in ALLOWED_EMAILS:
         else:
             st.warning(labels["No submissions found yet."])
 else:
-    if admin_email: # Only show error if an email was actually entered
+    if admin_email:
         st.error(labels["Not an authorized admin."])
