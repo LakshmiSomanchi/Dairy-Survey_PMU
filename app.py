@@ -427,7 +427,6 @@ BASELINE_QUESTIONS = [
     {"label": {"English": "Photo / Timestamp", "Hindi": "फोटो / टाइमस्टैम्प", "Marathi": "फोटो / वेळ"}, "type": "photo_upload"}, # Changed type to handle both camera and file uploader
     {"label": {"English": "Date of Visit", "Hindi": "यात्रा की तारीख", "Marathi": "भेटीची तारीख"}, "type": "date"},
 ]
-]
 
 # Render form UI
 st.header(labels["Baseline Survey Questions"])
