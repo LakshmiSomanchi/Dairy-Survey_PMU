@@ -397,16 +397,16 @@ BASELINE_QUESTIONS = [
     {"label": {"English": "Quantity of Green Fodder per day (in Kgs)", "Hindi": "प्रतिदिन हरे चारे की मात्रा (किलो में)", "Marathi": "दररोज हिरव्या चाऱ्याचे प्रमाण (किलोमध्ये)"}, "type": "number", "depends_on": {"Green Fodder": "Yes"}},
     {"label": {"English": "Dry Fodder", "Hindi": "सूखा चारा", "Marathi": "सुक्या चाऱ्या"}, "type": "select", "options": ["", "Yes", "No"]}, # Added empty option
     {"label": {"English": "If yes, type of Dry Fodder", "Hindi": "यदि हाँ, तो सूखे चारे का प्रकार", "Marathi": "होय असल्यास, सुक्या चाऱ्याचा प्रकार"}, "type": "text", "depends_on": {"Dry Fodder": "Yes"}},
-    {"label": {"English": "Quantity of Dry Fodder per day (in Kgs)": "प्रतिदिन सूखे चारे की मात्रा (किलो में)", "Marathi": "दररोज सुक्या चाऱ्याचे प्रमाण (किलोमध्ये)"}, "type": "number", "depends_on": {"Dry Fodder": "Yes"}},
+    {"label": {"English": "Quantity of Dry Fodder per day (in Kgs)", "Hindi": "प्रतिदिन सूखे चारे की मात्रा (किलो में)", "Marathi": "दररोज सुक्या चाऱ्याचे प्रमाण (किलोमध्ये)"}, "type": "number", "depends_on": {"Dry Fodder": "Yes"}},
     {"label": {"English": "Concentrate Feed", "Hindi": "सांद्रित चारा", "Marathi": "केंद्रित चारा"}, "type": "select", "options": ["", "Yes", "No"]}, # Added empty option
     {"label": {"English": "If yes, which brand", "Hindi": "यदि हाँ, तो कौन सा ब्रांड", "Marathi": "होय असल्यास, कोणता ब्रँड"}, "type": "text", "depends_on": {"Concentrate Feed": "Yes"}},
-    {"label": {"English": "Quantity of Concentrate Feed per day (in Kgs)": "प्रतिदिन सांद्रित चारे की मात्रा (किलो में)", "Marathi": "दररोज केंद्रित चाऱ्याचे प्रमाण (किलोमध्ये)"}, "type": "number", "depends_on": {"Concentrate Feed": "Yes"}},
+    {"label": {"English": "Quantity of Concentrate Feed per day (in Kgs)", "Hindi": "प्रतिदिन सांद्रित चारे की मात्रा (किलो में)", "Marathi": "दररोज केंद्रित चाऱ्याचे प्रमाण (किलोमध्ये)"}, "type": "number", "depends_on": {"Concentrate Feed": "Yes"}},
     {"label": {"English": "Mineral Mixture", "Hindi": "खनिज मिश्रण", "Marathi": "खनिज मिश्रण"}, "type": "select", "options": ["", "Yes", "No"]}, # Added empty option
     {"label": {"English": "If yes, which brand_mineral", "Hindi": "यदि हाँ, तो कौन सा ब्रांड", "Marathi": "होय असल्यास, कोणता ब्रँड"}, "type": "text", "depends_on": {"Mineral Mixture": "Yes"}},
-    {"label": {"English": "Quantity of Mineral Mixture per day (in gms)": "प्रतिदिन खनिज मिश्रण की मात्रा (ग्राम में)", "Marathi": "दररोज खनिज मिश्रणाचे प्रमाण (ग्राम मध्ये)"}, "type": "number", "depends_on": {"Mineral Mixture": "Yes"}},
+    {"label": {"English": "Quantity of Mineral Mixture per day (in gms)", "Hindi": "प्रतिदिन खनिज मिश्रण की मात्रा (ग्राम में)", "Marathi": "दररोज खनिज मिश्रणाचे प्रमाण (ग्राम मध्ये)"}, "type": "number", "depends_on": {"Mineral Mixture": "Yes"}},
     {"label": {"English": "Silage", "Hindi": "साइलेज", "Marathi": "सायलेज"}, "type": "select", "options": ["", "Yes", "No"]}, # Added empty option
     {"label": {"English": "If yes, what is the source and price", "Hindi": "यदि हाँ, तो स्रोत और कीमत क्या है", "Marathi": "होय असल्यास, स्त्रोत आणि किंमत काय आहे"}, "type": "text", "depends_on": {"Silage": "Yes"}},
-    {"label": {"English": "Quantity of Silage per day (in Kgs)": "प्रतिदिन साइलेज की मात्रा (किलो में)", "Marathi": "दररोज सायलेजचे प्रमाण (किलोमध्ये)"}, "type": "number", "depends_on": {"Silage": "Yes"}},
+    {"label": {"English": "Quantity of Silage per day (in Kgs)", "Hindi": "प्रतिदिन साइलेज की मात्रा (किलो में)", "Marathi": "दररोज सायलेजचे प्रमाण (किलोमध्ये)"}, "type": "number", "depends_on": {"Silage": "Yes"}},
     {"label": {"English": "Type of Farm", "Hindi": "खेत का प्रकार", "Marathi": "शेताचा प्रकार"}, "type": "multiselect", "options": ["Conventional", "Animal Welfare Farm", "Other (specify)"]},
     {"label": {"English": "Other Type of Farm (if selected above)", "Hindi": "अन्य खेत का प्रकार (यदि ऊपर चुना गया हो)", "Marathi": "इतर शेताचा प्रकार (वर निवडल्यास)"}, "type": "text", "depends_on": {"Type of Farm": "Other (specify)"}},
     {"label": {"English": "Source of Water", "Hindi": "पानी का स्रोत", "Marathi": "पाण्याचा स्त्रोत"}, "type": "text"},
@@ -426,6 +426,7 @@ BASELINE_QUESTIONS = [
     {"label": {"English": "Other Surveyor Name", "Hindi": "अन्य सर्वेक्षक का नाम", "Marathi": "इतर सर्वेक्षकाचे नाव"}, "type": "text", "depends_on": {"Name of Surveyor": "Other (specify)"}}, # New field
     {"label": {"English": "Photo / Timestamp", "Hindi": "फोटो / टाइमस्टैम्प", "Marathi": "फोटो / वेळ"}, "type": "photo_upload"}, # Changed type to handle both camera and file uploader
     {"label": {"English": "Date of Visit", "Hindi": "यात्रा की तारीख", "Marathi": "भेटीची तारीख"}, "type": "date"},
+]
 ]
 
 # Render form UI
