@@ -568,7 +568,7 @@ if admin_email in ALLOWED_EMAILS:
                         mime="image/jpeg" if img_file.lower().endswith(('.jpg', '.jpeg')) else "image/png"
                     )
         else:
-            st.warning(labels["No images found.")
+            st.warning(labels["No images found."])
 
     if st.checkbox(labels["View Past Submissions"]):
         # Filter for CSV files that start with 'survey_response_' to avoid other CSVs
