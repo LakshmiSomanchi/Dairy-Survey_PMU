@@ -397,7 +397,7 @@ BASELINE_QUESTIONS = [
     {"label": {"English": "Quantity of Green Fodder per day (in Kgs)", "Hindi": "प्रतिदिन हरे चारे की मात्रा (किलो में)", "Marathi": "दररोज हिरव्या चाऱ्याचे प्रमाण (किलोमध्ये)"}, "type": "number", "depends_on": {"Green Fodder": "Yes"}},
     {"label": {"English": "Dry Fodder", "Hindi": "सूखा चारा", "Marathi": "सुक्या चाऱ्या"}, "type": "select", "options": ["", "Yes", "No"]}, # Added empty option
     {"label": {"English": "If yes, type of Dry Fodder", "Hindi": "यदि हाँ, तो सूखे चारे का प्रकार", "Marathi": "होय असल्यास, सुक्या चाऱ्याचा प्रकार"}, "type": "text", "depends_on": {"Dry Fodder": "Yes"}},
-    {"label": {"English": "Quantity of Dry Fodder per day (in Kgs справочник)": "प्रतिदिन सूखे चारे की मात्रा (किलो में)", "Marathi": "दररोज सुक्या चाऱ्याचे प्रमाण (किलोमध्ये)"}, "type": "number", "depends_on": {"Dry Fodder": "Yes"}},
+    {"label": {"English": "Quantity of Dry Fodder per day (in Kgs)": "प्रतिदिन सूखे चारे की मात्रा (किलो में)", "Marathi": "दररोज सुक्या चाऱ्याचे प्रमाण (किलोमध्ये)"}, "type": "number", "depends_on": {"Dry Fodder": "Yes"}},
     {"label": {"English": "Concentrate Feed", "Hindi": "सांद्रित चारा", "Marathi": "केंद्रित चारा"}, "type": "select", "options": ["", "Yes", "No"]}, # Added empty option
     {"label": {"English": "If yes, which brand", "Hindi": "यदि हाँ, तो कौन सा ब्रांड", "Marathi": "होय असल्यास, कोणता ब्रँड"}, "type": "text", "depends_on": {"Concentrate Feed": "Yes"}},
     {"label": {"English": "Quantity of Concentrate Feed per day (in Kgs)": "प्रतिदिन सांद्रित चारे की मात्रा (किलो में)", "Marathi": "दररोज केंद्रित चाऱ्याचे प्रमाण (किलोमध्ये)"}, "type": "number", "depends_on": {"Concentrate Feed": "Yes"}},
