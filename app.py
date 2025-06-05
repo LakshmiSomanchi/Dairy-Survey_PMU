@@ -95,6 +95,8 @@ dict_translations = {
         "Other (specify)": "Other (specify)", # Added for BMC/MCC and Surveyor
         "Other BMC/MCC Name": "Other BMC/MCC Name", # Added for BMC/MCC
         "Other Surveyor Name": "Other Surveyor Name", # Added for Surveyor
+        "Upload Photo from Gallery": "Upload Photo from Gallery", # New translation
+        "Take a Photo": "Take a Photo", # New translation
     },
     "Hindi": {
         "Farmer Profile": "किसान प्रोफाइल",
@@ -176,6 +178,8 @@ dict_translations = {
         "Other (specify)": "अन्य (निर्दिष्ट करें)",
         "Other BMC/MCC Name": "अन्य बीएमसी/एमसीसी नाम",
         "Other Surveyor Name": "अन्य सर्वेक्षक का नाम",
+        "Upload Photo from Gallery": "गैलरी से फोटो अपलोड करें",
+        "Take a Photo": "फोटो लें",
     },
     "Marathi": {
         "Farmer Profile": "शेतकरी प्रोफाइल",
@@ -257,6 +261,8 @@ dict_translations = {
         "Other (specify)": "इतर (निर्दिष्ट करा)",
         "Other BMC/MCC Name": "इतर बीएमसी/एमसीसी नाव",
         "Other Surveyor Name": "इतर सर्वेक्षकाचे नाव",
+        "Upload Photo from Gallery": "गॅलरीतून फोटो अपलोड करा",
+        "Take a Photo": "फोटो घ्या",
     }
 }
 
@@ -353,12 +359,12 @@ if 'uploaded_image_filename' not in st.session_state:
 BASELINE_QUESTIONS = [
     # Farmer Profile Section
     {"label": {"English": "Types", "Hindi": "प्रकार", "Marathi": "प्रकार"}, "type": "text"},
-    {"label": {"English": "BMC/MCC Name", "Hindi": "बीएमसी/एमसीसी नाम", "Marathi": "बीएमसी/एमसीसी नाव"}, "type": "select", "options": bmc_mcc_names},
+    {"label": {"English": "BMC/MCC Name", "Hindi": "बीएमसी/एमसीसी नाम", "Marathi": "बीएमसी/एमसीसी नाव"}, "type": "select", "options": bmc_mcc_names, "default": ""}, # Added default
     {"label": {"English": "Other BMC/MCC Name", "Hindi": "अन्य बीएमसी/एमसीसी नाम", "Marathi": "इतर बीएमसी/एमसीसी नाव"}, "type": "text", "depends_on": {"BMC/MCC Name": "Other (specify)"}}, # New field
     {"label": {"English": "BMC/MCC Code", "Hindi": "बीएमसी/एमसीसी कोड", "Marathi": "बीएमसी/एमसीसी कोड"}, "type": "text"},
-    {"label": {"English": "District", "Hindi": "जिला", "Marathi": "जिल्हा"}, "type": "select", "options": districts},
+    {"label": {"English": "District", "Hindi": "जिला", "Marathi": "जिल्हा"}, "type": "select", "options": districts, "default": ""}, # Added default
     {"label": {"English": "Taluka", "Hindi": "तालुका", "Marathi": "तालुका"}, "type": "text"}, # Now a text input
-    {"label": {"English": "Village", "Hindi": "गांव", "Marathi": "गाव"}, "type": "select", "options": villages},
+    {"label": {"English": "Village", "Hindi": "गांव", "Marathi": "गाव"}, "type": "select", "options": villages, "default": ""}, # Added default
     {"label": {"English": "BCF Name", "Hindi": "बीसीएफ का नाम", "Marathi": "बीसीएफचे नाव"}, "type": "text"},
     {"label": {"English": "Energy sources", "Hindi": "ऊर्जा स्रोत", "Marathi": "ऊर्जेचे स्रोत"}, "type": "multiselect", "options": ["Solar", "Main electricity", "Both", "Generator"]},
     {"label": {"English": "Number of villages covered by the BMC", "Hindi": "बीएमसी द्वारा कवर किए गए गांवों की संख्या", "Marathi": "बीएमसीने व्यापलेली गावांची संख्या"}, "type": "number"},
@@ -368,7 +374,7 @@ BASELINE_QUESTIONS = [
     {"label": {"English": "No. of farmers under each Route vehicle", "Hindi": "प्रत्येक रूट वाहन के तहत किसानों की संख्या", "Marathi": "प्रत्येक मार्ग वाहनाखालील शेतकऱ्यांची संख्या"}, "type": "number"},
     {"label": {"English": "Farmer Name", "Hindi": "किसान का नाम", "Marathi": "शेतकऱ्याचे नाव"}, "type": "text"},
     {"label": {"English": "Farmer Code / Pourer Id", "Hindi": "किसान कोड / दूध देने वाला आईडी", "Marathi": "शेतकरी कोड / दूध देणारा आयडी"}, "type": "text"},
-    {"label": {"English": "Gender", "Hindi": "लिंग", "Marathi": "लिंग"}, "type": "select", "options": ["Male", "Female"]},
+    {"label": {"English": "Gender", "Hindi": "लिंग", "Marathi": "लिंग"}, "type": "select", "options": ["", "Male", "Female"]}, # Added empty option
     {"label": {"English": "Services provided by BMC to farmer", "Hindi": "किसान को बीएमसी द्वारा दी जाने वाली सेवाएं", "Marathi": "शेतकऱ्याला बीएमसीने दिलेल्या सेवा"}, "type": "multiselect", "options": ["AI", "Vaccination", "Feed supply", "Silage", "None", "Other (specify)"]},
     {"label": {"English": "Other Services (if selected above)", "Hindi": "अन्य सेवाएं (यदि ऊपर चुना गया हो)", "Marathi": "इतर सेवा (वर निवडल्यास)"}, "type": "text", "depends_on": {"Services provided by BMC to farmer": "Other (specify)"}},
 
@@ -386,19 +392,19 @@ BASELINE_QUESTIONS = [
 
     # Specific Questions Section
     {"section": "Specific Questions"},
-    {"label": {"English": "Green Fodder", "Hindi": "हरा चारा", "Marathi": "हिरवा चारा"}, "type": "select", "options": ["Yes", "No"]},
+    {"label": {"English": "Green Fodder", "Hindi": "हरा चारा", "Marathi": "हिरवा चारा"}, "type": "select", "options": ["", "Yes", "No"]}, # Added empty option
     {"label": {"English": "If yes, type of Green Fodder", "Hindi": "यदि हाँ, तो हरे चारे का प्रकार", "Marathi": "होय असल्यास, हिरव्या चाऱ्याचा प्रकार"}, "type": "text", "depends_on": {"Green Fodder": "Yes"}},
     {"label": {"English": "Quantity of Green Fodder per day (in Kgs)", "Hindi": "प्रतिदिन हरे चारे की मात्रा (किलो में)", "Marathi": "दररोज हिरव्या चाऱ्याचे प्रमाण (किलोमध्ये)"}, "type": "number", "depends_on": {"Green Fodder": "Yes"}},
-    {"label": {"English": "Dry Fodder", "Hindi": "सूखा चारा", "Marathi": "सुक्या चाऱ्या"}, "type": "select", "options": ["Yes", "No"]},
+    {"label": {"English": "Dry Fodder", "Hindi": "सूखा चारा", "Marathi": "सुक्या चाऱ्या"}, "type": "select", "options": ["", "Yes", "No"]}, # Added empty option
     {"label": {"English": "If yes, type of Dry Fodder", "Hindi": "यदि हाँ, तो सूखे चारे का प्रकार", "Marathi": "होय असल्यास, सुक्या चाऱ्याचा प्रकार"}, "type": "text", "depends_on": {"Dry Fodder": "Yes"}},
     {"label": {"English": "Quantity of Dry Fodder per day (in Kgs)", "Hindi": "प्रतिदिन सूखे चारे की मात्रा (किलो में)", "Marathi": "दररोज सुक्या चाऱ्याचे प्रमाण (किलोमध्ये)"}, "type": "number", "depends_on": {"Dry Fodder": "Yes"}},
-    {"label": {"English": "Concentrate Feed", "Hindi": "सांद्रित चारा", "Marathi": "केंद्रित चारा"}, "type": "select", "options": ["Yes", "No"]},
+    {"label": {"English": "Concentrate Feed", "Hindi": "सांद्रित चारा", "Marathi": "केंद्रित चारा"}, "type": "select", "options": ["", "Yes", "No"]}, # Added empty option
     {"label": {"English": "If yes, which brand", "Hindi": "यदि हाँ, तो कौन सा ब्रांड", "Marathi": "होय असल्यास, कोणता ब्रँड"}, "type": "text", "depends_on": {"Concentrate Feed": "Yes"}},
     {"label": {"English": "Quantity of Concentrate Feed per day (in Kgs)", "Hindi": "प्रतिदिन सांद्रित चारे की मात्रा (किलो में)", "Marathi": "दररोज केंद्रित चाऱ्याचे प्रमाण (किलोमध्ये)"}, "type": "number", "depends_on": {"Concentrate Feed": "Yes"}},
-    {"label": {"English": "Mineral Mixture", "Hindi": "खनिज मिश्रण", "Marathi": "खनिज मिश्रण"}, "type": "select", "options": ["Yes", "No"]},
+    {"label": {"English": "Mineral Mixture", "Hindi": "खनिज मिश्रण", "Marathi": "खनिज मिश्रण"}, "type": "select", "options": ["", "Yes", "No"]}, # Added empty option
     {"label": {"English": "If yes, which brand_mineral", "Hindi": "यदि हाँ, तो कौन सा ब्रांड", "Marathi": "होय असल्यास, कोणता ब्रँड"}, "type": "text", "depends_on": {"Mineral Mixture": "Yes"}},
     {"label": {"English": "Quantity of Mineral Mixture per day (in gms)", "Hindi": "प्रतिदिन खनिज मिश्रण की मात्रा (ग्राम में)", "Marathi": "दररोज खनिज मिश्रणाचे प्रमाण (ग्राम मध्ये)"}, "type": "number", "depends_on": {"Mineral Mixture": "Yes"}},
-    {"label": {"English": "Silage", "Hindi": "साइलेज", "Marathi": "सायलेज"}, "type": "select", "options": ["Yes", "No"]},
+    {"label": {"English": "Silage", "Hindi": "साइलेज", "Marathi": "सायलेज"}, "type": "select", "options": ["", "Yes", "No"]}, # Added empty option
     {"label": {"English": "If yes, what is the source and price", "Hindi": "यदि हाँ, तो स्रोत और कीमत क्या है", "Marathi": "होय असल्यास, स्त्रोत आणि किंमत काय आहे"}, "type": "text", "depends_on": {"Silage": "Yes"}},
     {"label": {"English": "Quantity of Silage per day (in Kgs)", "Hindi": "प्रतिदिन साइलेज की मात्रा (किलो में)", "Marathi": "दररोज सायलेजचे प्रमाण (किलोमध्ये)"}, "type": "number", "depends_on": {"Silage": "Yes"}},
     {"label": {"English": "Type of Farm", "Hindi": "खेत का प्रकार", "Marathi": "शेताचा प्रकार"}, "type": "multiselect", "options": ["Conventional", "Animal Welfare Farm", "Other (specify)"]},
@@ -406,9 +412,9 @@ BASELINE_QUESTIONS = [
     {"label": {"English": "Source of Water", "Hindi": "पानी का स्रोत", "Marathi": "पाण्याचा स्त्रोत"}, "type": "text"},
     {"label": {"English": "Preventive health care measures-Annual cycle", "Hindi": "रोकथाम स्वास्थ्य देखभाल उपाय - वार्षिक चक्र", "Marathi": "प्रतिबंधात्मक आरोग्य सेवा उपाय - वार्षिक चक्र"}, "type": "multiselect", "options": ["Vaccination", "Deworming", "Preventive Health checkup", "Other (specify)"]},
     {"label": {"English": "If Other Preventive health care measures, specify", "Hindi": "यदि अन्य निवारक स्वास्थ्य देखभाल उपाय, तो निर्दिष्ट करें", "Marathi": "इतर प्रतिबंधात्मक आरोग्य सेवा उपाय असल्यास, निर्दिष्ट करा"}, "type": "text", "depends_on": {"Preventive health care measures-Annual cycle": "Other (specify)"}},
-    {"label": {"English": "Have they previously used Ethno veterinary resources", "Hindi": "क्या उन्होंने पहले एथनो पशु चिकित्सा संसाधनों का उपयोग किया है", "Marathi": "त्यांनी पूर्वी पारंपरिक पशुवैद्यकीय साधने वापरली आहेत का"}, "type": "select", "options": ["Yes", "No"]},
+    {"label": {"English": "Have they previously used Ethno veterinary resources", "Hindi": "क्या उन्होंने पहले एथनो पशु चिकित्सा संसाधनों का उपयोग किया है", "Marathi": "त्यांनी पूर्वी पारंपरिक पशुवैद्यकीय साधने वापरली आहेत का"}, "type": "select", "options": ["", "Yes", "No"]}, # Added empty option
     {"label": {"English": "If yes, what disease/text", "Hindi": "यदि हाँ, तो कौन सी बीमारी/पाठ", "Marathi": "होय असल्यास, कोणता आजार/मजकूर"}, "type": "text", "depends_on": {"Have they previously used Ethno veterinary resources": "Yes"}},
-    {"label": {"English": "Women entrepreneur providing banking services", "Hindi": "महिला उद्यमी जो बैंकिंग सेवाएं प्रदान करती हैं", "Marathi": "बँकिंग सेवा पुरवणाऱ्या महिला उद्योजिका"}, "type": "select", "options": ["Yes", "No"]},
+    {"label": {"English": "Women entrepreneur providing banking services", "Hindi": "महिला उद्यमी जो बैंकिंग सेवाएं प्रदान करती हैं", "Marathi": "बँकिंग सेवा पुरवणाऱ्या महिला उद्योजिका"}, "type": "select", "options": ["", "Yes", "No"]}, # Added empty option
     {"label": {"English": "If Yes, Banking Services Provided by Women Entrepreneur", "Hindi": "यदि हाँ, तो महिला उद्यमी द्वारा प्रदान की जाने वाली बैंकिंग सेवाएं", "Marathi": "होय असल्यास, महिला उद्योजिकाद्वारे प्रदान केलेल्या बँकिंग सेवा"}, "type": "multiselect", "options": ["Yes-Bank", "MF", "Other (specify)"]},
     {"label": {"English": "If Other Banking Services, specify", "Hindi": "यदि अन्य बैंकिंग सेवाएं, तो निर्दिष्ट करें", "Marathi": "इतर बँकिंग सेवा असल्यास, निर्दिष्ट करा"}, "type": "text", "depends_on": {"If Yes, Banking Services Provided by Women Entrepreneur": "Other (specify)"}},
     {"label": {"English": "Extension services", "Hindi": "विस्तार सेवाएं", "Marathi": "विस्तार सेवा"}, "type": "multiselect", "options": ["Training", "Concentrate Feed Supply", "Mineral Mixture", "AI Services", "Health Camps", "No Services", "Others (specify)"]},
@@ -416,9 +422,9 @@ BASELINE_QUESTIONS = [
 
     # Final Fields
     {"section": "Survey Details"},
-    {"label": {"English": "Name of Surveyor", "Hindi": "सर्वेक्षक का नाम", "Marathi": "सर्वेक्षकाचे नाव"}, "type": "select", "options": surveyors}, # Changed to select
+    {"label": {"English": "Name of Surveyor", "Hindi": "सर्वेक्षक का नाम", "Marathi": "सर्वेक्षकाचे नाव"}, "type": "select", "options": surveyors, "default": ""}, # Changed to select, added default
     {"label": {"English": "Other Surveyor Name", "Hindi": "अन्य सर्वेक्षक का नाम", "Marathi": "इतर सर्वेक्षकाचे नाव"}, "type": "text", "depends_on": {"Name of Surveyor": "Other (specify)"}}, # New field
-    {"label": {"English": "Photo / Timestamp", "Hindi": "फोटो / टाइमस्टैम्प", "Marathi": "फोटो / वेळ"}, "type": "camera_input"},
+    {"label": {"English": "Photo / Timestamp", "Hindi": "फोटो / टाइमस्टैम्प", "Marathi": "फोटो / वेळ"}, "type": "photo_upload"}, # Changed type to handle both camera and file uploader
     {"label": {"English": "Date of Visit", "Hindi": "यात्रा की तारीख", "Marathi": "भेटीची तारीख"}, "type": "date"},
 ]
 
@@ -461,31 +467,48 @@ for idx, q in enumerate(BASELINE_QUESTIONS):
             current_val_for_widget = baseline_answers.get(q['label']['English'])
 
             if q['type'] == 'text':
+                # Made non-mandatory by setting default to empty string
                 baseline_answers[q['label']['English']] = st.text_input(label, value=current_val_for_widget if current_val_for_widget is not None else "", key=key)
             elif q['type'] == 'number':
-                baseline_answers[q['label']['English']] = st.number_input(label, min_value=0.0, value=current_val_for_widget if current_val_for_widget is not None else 0.0, key=key)
+                # Made non-mandatory by setting default to None, allowing user to leave it empty
+                baseline_answers[q['label']['English']] = st.number_input(label, min_value=0.0, value=current_val_for_widget if current_val_for_widget is not None else None, key=key)
             elif q['type'] == 'select':
+                # Made non-mandatory by including an empty string as a default option
+                options_for_select = [""] + q['options'] if "" not in q['options'] else q['options']
                 default_index = 0
-                if q['options']:
-                    if current_val_for_widget in q['options']:
-                        default_index = q['options'].index(current_val_for_widget)
-                    elif current_val_for_widget is None and "" in q['options']:
-                        default_index = q['options'].index("")
-                    elif current_val_for_widget is None:
-                        default_index = 0
-                else:
-                    baseline_answers[q['label']['English']] = None
-                    continue
-                baseline_answers[q['label']['English']] = st.selectbox(label, q['options'], index=default_index, key=key)
+                if current_val_for_widget in options_for_select:
+                    default_index = options_for_select.index(current_val_for_widget)
+                elif current_val_for_widget is None and "" in options_for_select:
+                    default_index = options_for_select.index("")
+
+                baseline_answers[q['label']['English']] = st.selectbox(label, options_for_select, index=default_index, key=key)
             elif q['type'] == 'multiselect':
-                baseline_answers[q['label']['English']] = st.multiselect(label, q['options'], default=current_val_for_widget if current_val_for_widget is not None else [], key=key)
+                # Glitch fix: Ensure `default` argument for st.multiselect is correctly set to current_val_for_widget
+                # Made non-mandatory by setting default to an empty list
+                selected_options = st.multiselect(
+                    label,
+                    q['options'],
+                    default=current_val_for_widget if isinstance(current_val_for_widget, list) else [],
+                    key=key
+                )
+                baseline_answers[q['label']['English']] = selected_options
+
             elif q['type'] == 'date':
-                baseline_answers[q['label']['English']] = st.date_input(label, value=current_val_for_widget if current_val_for_widget is not None else datetime.date.today(), key=key)
-            elif q['type'] == 'camera_input':
-                uploaded_image = st.camera_input(label, key=key)
+                # Made non-mandatory by setting default to None or current date
+                baseline_answers[q['label']['English']] = st.date_input(label, value=current_val_for_widget if current_val_for_widget is not None else None, key=key)
+            elif q['type'] == 'photo_upload': # New type to handle both camera and file uploader
+                st.write(label)
+                # Option 1: Camera Input
+                uploaded_image_camera = st.camera_input(labels["Take a Photo"], key=f"camera_input_{key}")
+                
+                # Option 2: File Uploader (Upload from Gallery)
+                uploaded_image_gallery = st.file_uploader(labels["Upload Photo from Gallery"], type=["jpg", "jpeg", "png"], key=f"file_uploader_{key}")
+
+                uploaded_image = uploaded_image_camera if uploaded_image_camera else uploaded_image_gallery
+
                 if uploaded_image is not None:
                     timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-                    image_filename = f"photo_{timestamp}.jpg"
+                    image_filename = f"photo_{timestamp}_{uploaded_image.name}" # Include original file name for uniqueness
                     image_path = os.path.join(IMAGE_SAVE_DIR, image_filename)
                     with open(image_path, "wb") as f:
                         f.write(uploaded_image.getbuffer())
@@ -494,12 +517,11 @@ for idx, q in enumerate(BASELINE_QUESTIONS):
                 else:
                     baseline_answers[q['label']['English']] = None
                     st.session_state.uploaded_image_filename = None
-
         else:
             # If a question is not displayed due to dependency, remove its value from session state
             if q['label']['English'] in baseline_answers:
                 del baseline_answers[q['label']['English']]
-                if q['type'] == 'camera_input':
+                if q['type'] == 'photo_upload': # If it was a photo input, clear filename
                     st.session_state.uploaded_image_filename = None
 
 
@@ -515,14 +537,18 @@ if st.button(labels["Submit Survey"]):
             other_bmc_mcc_name = data_to_save.get("Other BMC/MCC Name")
             if other_bmc_mcc_name:
                 data_to_save["BMC/MCC Name"] = f"Other: {other_bmc_mcc_name}"
-            del data_to_save["Other BMC/MCC Name"] # Remove the separate "Other BMC/MCC Name" field
+            # Ensure the dependent 'Other BMC/MCC Name' field is removed after processing
+            if "Other BMC/MCC Name" in data_to_save:
+                del data_to_save["Other BMC/MCC Name"]
 
         # Handle 'Other (specify)' for Name of Surveyor
         if data_to_save.get("Name of Surveyor") == labels["Other (specify)"]:
             other_surveyor_name = data_to_save.get("Other Surveyor Name")
             if other_surveyor_name:
                 data_to_save["Name of Surveyor"] = f"Other: {other_surveyor_name}"
-            del data_to_save["Other Surveyor Name"] # Remove the separate "Other Surveyor Name" field
+            # Ensure the dependent 'Other Surveyor Name' field is removed after processing
+            if "Other Surveyor Name" in data_to_save:
+                del data_to_save["Other Surveyor Name"]
 
 
         df = pd.DataFrame([data_to_save])
@@ -530,7 +556,7 @@ if st.button(labels["Submit Survey"]):
         st.success(labels["Survey Saved!"])
         st.session_state.baseline_answers = {}
         st.session_state.uploaded_image_filename = None
-        st.rerun() # Changed from experimental_rerun()
+        st.rerun()
     except Exception as e:
         st.error(f"{labels['Error saving survey']}: {e}")
 
