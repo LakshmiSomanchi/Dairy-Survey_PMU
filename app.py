@@ -92,6 +92,9 @@ dict_translations = {
         "View Past Submissions": "View Past Submissions",
         "No submissions found yet.": "No submissions found yet.",
         "Download All Responses": "Download All Responses",
+        "Other (specify)": "Other (specify)", # Added for BMC/MCC and Surveyor
+        "Other BMC/MCC Name": "Other BMC/MCC Name", # Added for BMC/MCC
+        "Other Surveyor Name": "Other Surveyor Name", # Added for Surveyor
     },
     "Hindi": {
         "Farmer Profile": "किसान प्रोफाइल",
@@ -170,6 +173,9 @@ dict_translations = {
         "View Past Submissions": "पिछले सबमिशन देखें",
         "No submissions found yet.": "अभी तक कोई सबमिशन नहीं मिला।",
         "Download All Responses": "सभी प्रतिक्रियाएं डाउनलोड करें",
+        "Other (specify)": "अन्य (निर्दिष्ट करें)",
+        "Other BMC/MCC Name": "अन्य बीएमसी/एमसीसी नाम",
+        "Other Surveyor Name": "अन्य सर्वेक्षक का नाम",
     },
     "Marathi": {
         "Farmer Profile": "शेतकरी प्रोफाइल",
@@ -248,6 +254,9 @@ dict_translations = {
         "View Past Submissions": "मागील सबमिशन पहा",
         "No submissions found yet.": "आत्तापर्यंत कोणतेही सबमिशन आढळले नाही.",
         "Download All Responses": "सर्व प्रतिसाद डाउनलोड करा",
+        "Other (specify)": "इतर (निर्दिष्ट करा)",
+        "Other BMC/MCC Name": "इतर बीएमसी/एमसीसी नाव",
+        "Other Surveyor Name": "इतर सर्वेक्षकाचे नाव",
     }
 }
 
@@ -323,8 +332,14 @@ df_locations = pd.DataFrame(data)
 
 # Extract unique options for dropdowns
 bmc_mcc_names = sorted(df_locations['BMC Name'].unique().tolist())
+# Add 'Other (specify)' to BMC/MCC names
+bmc_mcc_names.append(labels["Other (specify)"])
+
 villages = sorted(df_locations['VILLAGE'].unique().tolist())
 districts = sorted(df_locations['District'].unique().tolist())
+
+# Add 'Other (specify)' to surveyors
+surveyors = ["Surveyor A", "Surveyor B", "Surveyor C", labels["Other (specify)"]]
 
 
 # Initialize session state for baseline answers if not already present
@@ -339,6 +354,7 @@ BASELINE_QUESTIONS = [
     # Farmer Profile Section
     {"label": {"English": "Types", "Hindi": "प्रकार", "Marathi": "प्रकार"}, "type": "text"},
     {"label": {"English": "BMC/MCC Name", "Hindi": "बीएमसी/एमसीसी नाम", "Marathi": "बीएमसी/एमसीसी नाव"}, "type": "select", "options": bmc_mcc_names},
+    {"label": {"English": "Other BMC/MCC Name", "Hindi": "अन्य बीएमसी/एमसीसी नाम", "Marathi": "इतर बीएमसी/एमसीसी नाव"}, "type": "text", "depends_on": {"BMC/MCC Name": "Other (specify)"}}, # New field
     {"label": {"English": "BMC/MCC Code", "Hindi": "बीएमसी/एमसीसी कोड", "Marathi": "बीएमसी/एमसीसी कोड"}, "type": "text"},
     {"label": {"English": "District", "Hindi": "जिला", "Marathi": "जिल्हा"}, "type": "select", "options": districts},
     {"label": {"English": "Taluka", "Hindi": "तालुका", "Marathi": "तालुका"}, "type": "text"}, # Now a text input
@@ -400,7 +416,8 @@ BASELINE_QUESTIONS = [
 
     # Final Fields
     {"section": "Survey Details"},
-    {"label": {"English": "Name of Surveyor", "Hindi": "सर्वेक्षक का नाम", "Marathi": "सर्वेक्षकाचे नाव"}, "type": "text"},
+    {"label": {"English": "Name of Surveyor", "Hindi": "सर्वेक्षक का नाम", "Marathi": "सर्वेक्षकाचे नाव"}, "type": "select", "options": surveyors}, # Changed to select
+    {"label": {"English": "Other Surveyor Name", "Hindi": "अन्य सर्वेक्षक का नाम", "Marathi": "इतर सर्वेक्षकाचे नाव"}, "type": "text", "depends_on": {"Name of Surveyor": "Other (specify)"}}, # New field
     {"label": {"English": "Photo / Timestamp", "Hindi": "फोटो / टाइमस्टैम्प", "Marathi": "फोटो / वेळ"}, "type": "camera_input"},
     {"label": {"English": "Date of Visit", "Hindi": "यात्रा की तारीख", "Marathi": "भेटीची तारीख"}, "type": "date"},
 ]
@@ -411,14 +428,7 @@ st.header(labels["Baseline Survey Questions"])
 # Use st.session_state.baseline_answers to persist inputs across reruns
 baseline_answers = st.session_state.baseline_answers
 
-# Keep track of previous answers for dependency checking
-previous_answers = {}
-
 for idx, q in enumerate(BASELINE_QUESTIONS):
-    # Only try to update previous_answers if the dictionary item 'q' has a 'label' key
-    if "label" in q:
-        previous_answers[q['label']['English']] = baseline_answers.get(q['label']['English'])
-
     if "section" in q:
         st.subheader(labels[q["section"]])
         continue
@@ -486,6 +496,7 @@ for idx, q in enumerate(BASELINE_QUESTIONS):
                     st.session_state.uploaded_image_filename = None
 
         else:
+            # If a question is not displayed due to dependency, remove its value from session state
             if q['label']['English'] in baseline_answers:
                 del baseline_answers[q['label']['English']]
                 if q['type'] == 'camera_input':
@@ -498,12 +509,28 @@ if st.button(labels["Submit Survey"]):
     file_name = os.path.join(SAVE_DIR, f"survey_response_{timestamp}.csv")
     try:
         data_to_save = {k: v for k, v in baseline_answers.items() if v is not None}
+
+        # Handle 'Other (specify)' for BMC/MCC Name
+        if data_to_save.get("BMC/MCC Name") == labels["Other (specify)"]:
+            other_bmc_mcc_name = data_to_save.get("Other BMC/MCC Name")
+            if other_bmc_mcc_name:
+                data_to_save["BMC/MCC Name"] = f"Other: {other_bmc_mcc_name}"
+            del data_to_save["Other BMC/MCC Name"] # Remove the separate "Other BMC/MCC Name" field
+
+        # Handle 'Other (specify)' for Name of Surveyor
+        if data_to_save.get("Name of Surveyor") == labels["Other (specify)"]:
+            other_surveyor_name = data_to_save.get("Other Surveyor Name")
+            if other_surveyor_name:
+                data_to_save["Name of Surveyor"] = f"Other: {other_surveyor_name}"
+            del data_to_save["Other Surveyor Name"] # Remove the separate "Other Surveyor Name" field
+
+
         df = pd.DataFrame([data_to_save])
         df.to_csv(file_name, index=False)
         st.success(labels["Survey Saved!"])
         st.session_state.baseline_answers = {}
         st.session_state.uploaded_image_filename = None
-        st.experimental_rerun()
+        st.rerun() # Changed from experimental_rerun()
     except Exception as e:
         st.error(f"{labels['Error saving survey']}: {e}")
 
@@ -541,7 +568,7 @@ if admin_email in ALLOWED_EMAILS:
                         mime="image/jpeg" if img_file.lower().endswith(('.jpg', '.jpeg')) else "image/png"
                     )
         else:
-            st.warning(labels["No images found."])
+            st.warning(labels["No images found.")
 
     if st.checkbox(labels["View Past Submissions"]):
         # Filter for CSV files that start with 'survey_response_' to avoid other CSVs
