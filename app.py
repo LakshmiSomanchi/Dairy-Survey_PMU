@@ -437,8 +437,9 @@ baseline_answers = st.session_state.baseline_answers
 
 for idx, q in enumerate(BASELINE_QUESTIONS):
     if "section" in q:
-        st.subheader(labels[q["section"]])
-        continue
+       section_title = labels.get(q["section"], q["section"])
+       st.subheader(section_title)
+       continue
 
     # Proceed only if the question has a 'label' (i.e., it's a real input field)
     if "label" in q:
